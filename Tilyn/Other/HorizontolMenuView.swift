@@ -15,6 +15,8 @@ class HorizontolMenuView: UIView {
    
     fileprivate var items = [MenuItem]()
     
+    var actionBlock: (Int)-> Void = {_ in}
+    
     //menuItems variable is used to access data from users to display in collection view
     var menuItems: [MenuItem] {
         set {
@@ -32,6 +34,7 @@ class HorizontolMenuView: UIView {
         collView.register(UINib.init(nibName: "HorizontolMenuCell", bundle: Bundle.main), forCellWithReuseIdentifier: "cell")
     }
 
+   //MARK: Public Function
     //load and add it in desire view.
     class func  loadFromNib()-> HorizontolMenuView {
         let views = Bundle.main.loadNibNamed("HorizontolMenuView", owner: nil, options: nil)
@@ -39,6 +42,22 @@ class HorizontolMenuView: UIView {
         //hmView.frame = CGRect(x: 0, y: 0, width: 320, height: 50)
         //hmView.layoutIfNeeded()
         return hmView
+    }
+    
+    //Scroll collectionview at specified indexpath
+    func scrollAtIndexPath(index: Int) {
+        let itemIndex = index + 1
+        let indexPath = IndexPath(item: itemIndex, section: 0)
+        collView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+        resetCellItems()
+        
+        let item = items[indexPath.row]
+        item.selected = true
+        
+        if let selectedCell = collView.cellForItem(at: indexPath) as? ItemCell {
+            selectedCell.lblTitle.font = selectedCell.lblTitle.font.withSize(14)
+        }
+
     }
 }
 
@@ -69,29 +88,32 @@ extension HorizontolMenuView :  UICollectionViewDataSource, UICollectionViewDele
             return
         }
         
-        items.forEach { (item)  in
-            item.selected = false
-        }
-        
-        let visibleCells = collectionView.visibleCells as! [ItemCell]
-        visibleCells.forEach { (cell) in
-            cell.lblTitle.font = cell.lblTitle.font.withSize(12)
-        }
+        resetCellItems()
        
         let item = items[indexPath.row]
         item.selected = true
        
         let selectedCell = collectionView.cellForItem(at: indexPath) as! ItemCell
         selectedCell.lblTitle.font = selectedCell.lblTitle.font.withSize(14)
-        
-        collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+        actionBlock(indexPath.row - 1)
+        collView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: cellWidth, height: self.frame.height)
     }
     
-    
+    //Reset all item
+    func resetCellItems() {
+        items.forEach { (item)  in
+            item.selected = false
+        }
+
+        let visibleCells = collView.visibleCells as! [ItemCell]
+        visibleCells.forEach { (cell) in
+            cell.lblTitle.font = cell.lblTitle.font.withSize(12)
+        }
+    }
 }
 
 //Cell

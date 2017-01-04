@@ -42,5 +42,5 @@ let serverDateFormator: DateFormatter = {
 }()
 
 //Shutter action block 
-var shutterActioinBlock: (Void)-> Void = {_ in}
+var shutterActionBlock: (Void)-> Void = {_ in}
 

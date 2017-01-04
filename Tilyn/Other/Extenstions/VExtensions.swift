@@ -129,6 +129,35 @@ extension UITableView {
     }
 }
 
+//MARK: UIViewController
+extension UIViewController {
+    
+    //Push View Controller from specified direction with layer animation.
+    //Used value for directions are: kCATransitionFromBottom, kCATransitionFromTop, kCATransitionFromLeft, kCATransitionFromRight
+    func push(controller: UIViewController, inDirection direction: String) {
+        let transition = CATransition()
+        transition.duration = 0.5
+        transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+        transition.type = kCATransitionPush
+        transition.subtype = direction
+        self.navigationController?.view.layer.add(transition, forKey: kCATransition)
+        self.navigationController?.pushViewController(controller, animated: false)
+    }
+    
+    //Pop View Controller from specified direction with layer animation.
+    //Used value for directions are: kCATransitionFromBottom, kCATransitionFromTop, kCATransitionFromLeft, kCATransitionFromRight
+    func pop(inDirection direction: String) {
+        let transition = CATransition()
+        transition.duration = 0.5
+        transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+        transition.type = kCATransitionPush
+        transition.subtype = direction
+        self.navigationController?.view.layer.add(transition, forKey: kCATransition)
+        _ = self.navigationController?.popViewController(animated: false)
+    }
+
+}
+
 //MARK: UILocalizedIndexedCollaction configuration
 extension UILocalizedIndexedCollation {
    

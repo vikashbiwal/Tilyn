@@ -57,6 +57,6 @@ class ParentViewController: UIViewController {
 extension ParentViewController {
     
     @IBAction func shutterButtonTapped(sender: UIButton?) {
-        shutterActioinBlock()
+        shutterActionBlock()
     }
 }

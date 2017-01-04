@@ -23,10 +23,19 @@ class ContainerVC: ParentViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.tableFooterView = UIView()
-        self.setShutterAtionBlock()
+        self.setShutterActionBlock()
         self.setMenuItems()
+        
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        let edgeGesture = UIPanGestureRecognizer(target: self, action: #selector(self.screenEdgeGestureAction(gesture:)))
+        //edgeGesture.edges = UIRectEdge.left
+        edgeGesture.delegate = self
+        self.view.window!.addGestureRecognizer(edgeGesture)
+     
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -40,13 +49,25 @@ class ContainerVC: ParentViewController {
                  MenuItem("Settings", imageName: "ic_Settings"),
                  MenuItem("Log Out", imageName: "ic_Settings")]
     }
+    
+    var tabbarController: UITabBarController? {
+        for vc in self.childViewControllers {
+            if vc is CustomTabbarController {
+                return vc as? UITabBarController
+            } else {
+                return nil
+            }
+        }
+        return nil
+    }
 }
 
 //MARK: Slider Shutter setup and action
-extension ContainerVC {
+extension ContainerVC : UIGestureRecognizerDelegate {
+   
     //Shutter block initialization
-    func setShutterAtionBlock() {
-        shutterActioinBlock = {[unowned self] in
+    func setShutterActionBlock() {
+        shutterActionBlock = {[unowned self] in
             self.openCloseShutter()
         }
     }
@@ -83,11 +104,40 @@ extension ContainerVC {
     }
     
     
-    
-    @IBAction func screenEdgeGestureAction(gesture: UIScreenEdgePanGestureRecognizer) {
-        print(gesture)
+    //Handle gesture event
+    func screenEdgeGestureAction(gesture: UIPanGestureRecognizer) {
+        let velocity =  gesture.velocity(in: self.view)
+        print("Velocity : \(velocity.x)")
+        let translation = gesture.translation(in: self.view)
+       print("Translation in x : \(translation.x)")
+       
+//        switch gesture.state {
+//        case .began:
+//            print("-------began state-------")
+//        case .cancelled, .failed :
+//            print("-------Canceled or Failed state-------")
+//        case .ended :
+//            print("-------Ended state-------")
+//        case .changed :
+//            print("-------Changed state-------")
+//            if translation.x >= 0 {
+//                self.containerViewLeadingSpace.constant = translation.x
+//            }
+//
+//        default:
+//            print("-------Default state-------")
+//        }
     }
+    
+    //Gesture Delegate
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+//        print("main \(gestureRecognizer)")
+//        print("Other \(otherGestureRecognizer)")
+        return true
+    }
+
 }
+
 
 //MARK: TableView DataSource and Delegate
 
@@ -111,7 +161,19 @@ extension ContainerVC : UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        if indexPath.row == 0 {//Home
+            tabbarController?.selectedIndex = 0
+            
+        } else if indexPath.row == 1 {//Profile
+            tabbarController?.selectedIndex = 1
+            
+        } else if indexPath.row == 2 { //Settings
+            tabbarController?.selectedIndex = 2
+            
+        } else if indexPath.row == 3 { //Log Out
+            //Logout
+        }
+        self.openCloseShutter()
     }
     
 }

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import  FBSDKLoginKit
 
 class LoginViewController: ParentViewController {
 
@@ -29,7 +30,47 @@ class LoginViewController: ParentViewController {
 
     
     @IBAction func facebookLoginBtnTapped(sender: UIButton) {
-        self.performSegue(withIdentifier: "LoginToHomeSegue", sender: nil)
+        //self.performSegue(withIdentifier: "LoginToHomeSegue", sender: nil)
+        loginWithFacebook()
     }
     
+    
+    func loginWithFacebook() {
+        let fbloginManager  = FBSDKLoginManager()
+        fbloginManager.logOut()
+        fbloginManager.logIn(withReadPermissions: _fbLoginReadPermissions, from: self, handler: {(loginResult, error) in
+            if let  _ =  error {
+                //login error
+            } else if loginResult!.isCancelled {
+                //cancel
+            } else {
+                //succes
+                let request = FBSDKGraphRequest(graphPath: "me", parameters: ["fields" : _fbUserInfoRequestParam])
+                _ = request?.start(completionHandler: { (con, result, error) in
+                    if let _ = error {
+                        //error
+                    }
+                    
+                    //getProfile image url from fb data
+                    if let info = result as? [String : Any] {
+                        print("Facebook Info : \(info)")
+                        var imgageUrl = ""
+                        if let picture = info["picture"] as? [String : Any]  {
+                            if let data = picture["data"] as? [String : Any] {
+                                if let url = data["url"] as? String {
+                                    imgageUrl = url
+                                    print(imgageUrl)
+                                }
+                            }
+                        }
+
+                    }
+                    
+                    //Login APICall
+                })
+            }
+
+            
+        })
+    }
 }
