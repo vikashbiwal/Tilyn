@@ -30,10 +30,9 @@ class ContainerVC: ParentViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        let edgeGesture = UIPanGestureRecognizer(target: self, action: #selector(self.screenEdgeGestureAction(gesture:)))
-        //edgeGesture.edges = UIRectEdge.left
-        edgeGesture.delegate = self
-        self.view.window!.addGestureRecognizer(edgeGesture)
+        //let edgeGesture = UIPanGestureRecognizer(target: self, action: #selector(self.screenEdgeGestureAction(gesture:)))
+        //edgeGesture.delegate = self
+        //self.view.addGestureRecognizer(edgeGesture)
      
     }
     override func didReceiveMemoryWarning() {
@@ -44,10 +43,9 @@ class ContainerVC: ParentViewController {
 
     //Set Slider Menu items
     func setMenuItems() {
-        menus = [MenuItem("Home", imageName: "ic_profile_small", selected : true),
-                 MenuItem("Profile", imageName: "ic_profile_small"),
+        menus = [MenuItem("Home", imageName: "ic_home", selected : true),
                  MenuItem("Settings", imageName: "ic_Settings"),
-                 MenuItem("Log Out", imageName: "ic_Settings")]
+                 MenuItem("Log Out", imageName: "ic_logout")]
     }
     
     var tabbarController: UITabBarController? {
@@ -81,12 +79,10 @@ extension ContainerVC : UIGestureRecognizerDelegate {
             isShutterOpened = false
             x = 0
             mx = -100 //menu view scroll at leading side
-            _application.statusBarStyle = .default
         } else {
             isShutterOpened = true
             x = shutterMaxXValue
             mx = 0
-            _application.statusBarStyle = .lightContent
             //tabbarController.view.addSubview(transparentControl)
             
         }
@@ -164,15 +160,17 @@ extension ContainerVC : UITableViewDataSource, UITableViewDelegate {
         if indexPath.row == 0 {//Home
             tabbarController?.selectedIndex = 0
             
-        } else if indexPath.row == 1 {//Profile
-            tabbarController?.selectedIndex = 1
-            
-        } else if indexPath.row == 2 { //Settings
+        }  else if indexPath.row == 1 { //Settings
             tabbarController?.selectedIndex = 2
             
-        } else if indexPath.row == 3 { //Log Out
+        } else if indexPath.row == 2 { //Log Out
             //Logout
         }
+        self.openCloseShutter()
+    }
+    
+    @IBAction func profileBtnTapped(sender: UIButton) {
+        tabbarController?.selectedIndex = 1
         self.openCloseShutter()
     }
     

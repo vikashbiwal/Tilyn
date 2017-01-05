@@ -30,8 +30,8 @@ class LoginViewController: ParentViewController {
 
     
     @IBAction func facebookLoginBtnTapped(sender: UIButton) {
-        //self.performSegue(withIdentifier: "LoginToHomeSegue", sender: nil)
-        loginWithFacebook()
+        self.performSegue(withIdentifier: "LoginToHomeSegue", sender: nil)
+        //loginWithFacebook()
     }
     
     
@@ -41,8 +41,10 @@ class LoginViewController: ParentViewController {
         fbloginManager.logIn(withReadPermissions: _fbLoginReadPermissions, from: self, handler: {(loginResult, error) in
             if let  _ =  error {
                 //login error
+                
             } else if loginResult!.isCancelled {
-                //cancel
+                //cancel.
+                
             } else {
                 //succes
                 let request = FBSDKGraphRequest(graphPath: "me", parameters: ["fields" : _fbUserInfoRequestParam])

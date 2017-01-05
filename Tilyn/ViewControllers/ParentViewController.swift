@@ -25,7 +25,6 @@ class ParentViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        _application.statusBarStyle = .default
     }
     
     override func didReceiveMemoryWarning() {
@@ -33,6 +32,10 @@ class ParentViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
     
     // This will update constaints and shrunk it as device screen goes lower.
     func constraintUpdate() {
@@ -54,9 +57,18 @@ class ParentViewController: UIViewController {
 
 }
 
+//MARK: Parent IBActions
 extension ParentViewController {
     
     @IBAction func shutterButtonTapped(sender: UIButton?) {
         shutterActionBlock()
+    }
+    
+    @IBAction func parentBackAction(sender: UIButton?) {
+       _ = self.navigationController?.popViewController(animated: true)
+    }
+    
+    @IBAction func parentDismissAction(sender: UIButton?) {
+        self.dismiss(animated: true, completion: nil)
     }
 }

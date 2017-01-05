@@ -51,10 +51,13 @@ class HomeViewController: ParentViewController {
         horizontalMenuView.actionBlock = {[unowned self](index) in
             if index == 0 {
                 self.currentMenuType = .Rewards
+                
             } else if index == 1 {
                 self.currentMenuType = .NearYou
+                
             } else if index == 2 {
                 self.currentMenuType = .Offers
+                
             }
             self.collectionViewScrollToIndex(index)
         }
@@ -97,15 +100,15 @@ extension HomeViewController : UICollectionViewDelegateFlowLayout, UICollectionV
     }
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-//        if scrollView == collView {
-//            let index = Int(scrollView.contentOffset.x / scrollView.frame.size.width)
-//            
-//            if index >= 0 && index < collView.numberOfItems(inSection: 0) {
-//                print(index)
-//                
-//                horizontalMenuView.scrollAtIndexPath(index: index)
-//            }
-//        }
+        if scrollView == collView {
+            let index = Int(scrollView.contentOffset.x / scrollView.frame.size.width)
+            
+            if index >= 0 && index < collView.numberOfItems(inSection: 0) {
+                print(index)
+                currentMenuType = MenuType(rawValue: index)!
+                horizontalMenuView.scrollAtIndexPath(index: index)
+            }
+        }
     }
     
     func collectionViewScrollToIndex(_ index: Int) {
@@ -143,7 +146,8 @@ extension HomeViewController : UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        self.performSegue(withIdentifier: "StoreDetailSegue", sender: nil)
+
     }
     
 }
@@ -167,7 +171,7 @@ class RestaurantCell : TableViewCell {
 
 //MARK: Reward Cell
 class RewardCell: TableViewCell, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-   
+    @IBOutlet var collView: UICollectionView!
     var rewardPoints = [String]()
     
     override func awakeFromNib() {
@@ -193,12 +197,15 @@ class RewardCell: TableViewCell, UICollectionViewDataSource, UICollectionViewDel
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 30, height: 30)
+        let side = 30 * _widthRatio
+        return CGSize(width: side, height: side)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: 0, left: 85, bottom: 0, right: 85)
     }
+    
+
 }
 
 

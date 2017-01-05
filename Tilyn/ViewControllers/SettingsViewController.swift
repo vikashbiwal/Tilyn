@@ -23,7 +23,6 @@ class SettingsViewController: ParentViewController {
     
     override func viewDidAppear(_ animated: Bool) {
        super.viewDidAppear(animated)
-        _application.statusBarStyle = .lightContent
     }
     /*
     // MARK: - Navigation

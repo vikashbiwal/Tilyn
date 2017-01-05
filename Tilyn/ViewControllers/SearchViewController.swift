@@ -23,6 +23,9 @@ class SearchViewController: ParentViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .default
+    }
 
 }
 
