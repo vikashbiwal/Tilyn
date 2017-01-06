@@ -31,13 +31,18 @@
 		6984B5F61E14DA3500006205 /* HorizontolMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6984B5F51E14DA3500006205 /* HorizontolMenuView.swift */; };
 		6984B5F81E14DB2B00006205 /* HorizontolMenuView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6984B5F71E14DB2B00006205 /* HorizontolMenuView.xib */; };
 		6984B5FA1E14E13900006205 /* HorizontolMenuCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6984B5F91E14E13900006205 /* HorizontolMenuCell.xib */; };
+		699942221E1F5A3600B526E7 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 699942211E1F5A3600B526E7 /* MapViewController.swift */; };
+		699942451E1F927D00B526E7 /* Webservice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 699942441E1F927D00B526E7 /* Webservice.swift */; };
+		699942471E1F9A9500B526E7 /* Webservice+APICalls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 699942461E1F9A9500B526E7 /* Webservice+APICalls.swift */; };
 		69A34DF61E1E5570009EE9CA /* IntrectiveNavigationCtroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69A34DF51E1E5570009EE9CA /* IntrectiveNavigationCtroller.swift */; };
 		69DD63851E1D0B4200FD0901 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69DD63821E1D0B4200FD0901 /* Bolts.framework */; };
 		69DD63861E1D0B4200FD0901 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69DD63831E1D0B4200FD0901 /* FBSDKCoreKit.framework */; };
 		69DD63871E1D0B4200FD0901 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69DD63841E1D0B4200FD0901 /* FBSDKLoginKit.framework */; };
+		C61C29B89E34AA63244450D0 /* Pods_Tilyn.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9834BA011732D617A2968FBA /* Pods_Tilyn.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		602FAE86220F0D9F3BBC81BD /* Pods-Tilyn.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tilyn.release.xcconfig"; path = "Pods/Target Support Files/Pods-Tilyn/Pods-Tilyn.release.xcconfig"; sourceTree = "<group>"; };
 		6929DF071E13B546002EDCC2 /* Tilyn.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tilyn.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6929DF0F1E13B546002EDCC2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		6929DF121E13B546002EDCC2 /* Tilyn.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Tilyn.xcdatamodel; sourceTree = "<group>"; };
@@ -64,10 +69,15 @@
 		6984B5F51E14DA3500006205 /* HorizontolMenuView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HorizontolMenuView.swift; sourceTree = "<group>"; };
 		6984B5F71E14DB2B00006205 /* HorizontolMenuView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HorizontolMenuView.xib; sourceTree = "<group>"; };
 		6984B5F91E14E13900006205 /* HorizontolMenuCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HorizontolMenuCell.xib; sourceTree = "<group>"; };
+		699942211E1F5A3600B526E7 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		699942441E1F927D00B526E7 /* Webservice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Webservice.swift; path = Classess/Webservice.swift; sourceTree = "<group>"; };
+		699942461E1F9A9500B526E7 /* Webservice+APICalls.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Webservice+APICalls.swift"; sourceTree = "<group>"; };
 		69A34DF51E1E5570009EE9CA /* IntrectiveNavigationCtroller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntrectiveNavigationCtroller.swift; sourceTree = "<group>"; };
 		69DD63821E1D0B4200FD0901 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		69DD63831E1D0B4200FD0901 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		69DD63841E1D0B4200FD0901 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
+		9834BA011732D617A2968FBA /* Pods_Tilyn.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Tilyn.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B407992B601AABBB12D183A9 /* Pods-Tilyn.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tilyn.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Tilyn/Pods-Tilyn.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +89,7 @@
 				69DD63851E1D0B4200FD0901 /* Bolts.framework in Frameworks */,
 				69DD63861E1D0B4200FD0901 /* FBSDKCoreKit.framework in Frameworks */,
 				69DD63871E1D0B4200FD0901 /* FBSDKLoginKit.framework in Frameworks */,
+				C61C29B89E34AA63244450D0 /* Pods_Tilyn.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -92,6 +103,7 @@
 				6929DF091E13B546002EDCC2 /* Tilyn */,
 				69DD63811E1D0B4200FD0901 /* Frameworks */,
 				6929DF081E13B546002EDCC2 /* Products */,
+				6F756CBD2D088ECA24581906 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -108,6 +120,7 @@
 			children = (
 				6929DF321E13C3E2002EDCC2 /* Storyboards */,
 				6929DF201E13B5EE002EDCC2 /* ViewControllers */,
+				699942431E1F922F00B526E7 /* Models_WebServices */,
 				6929DF1F1E13B5E0002EDCC2 /* Other */,
 				6929DF141E13B546002EDCC2 /* Assets.xcassets */,
 				6929DF191E13B546002EDCC2 /* Info.plist */,
@@ -132,22 +145,23 @@
 			children = (
 				6984B5F11E14D74C00006205 /* AppDelegate */,
 				696421791E1635B4003FF813 /* Login */,
+				6929DF271E13B9B1002EDCC2 /* ContainerVC */,
 				6984B5F01E14D74100006205 /* Home */,
 				6969B31D1E1CDCC20093F02C /* ProfileVC */,
-				69DD63881E1D165A00FD0901 /* StoreDetailVC */,
 				6969B3181E1CC52E0093F02C /* Settings */,
+				69DD63881E1D165A00FD0901 /* StoreDetailVC */,
+				699942201E1F59D900B526E7 /* MapViewController */,
 				6929DF2A1E13BBAC002EDCC2 /* ParentClassess */,
-				6929DF271E13B9B1002EDCC2 /* ContainerViewController */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
 		};
-		6929DF271E13B9B1002EDCC2 /* ContainerViewController */ = {
+		6929DF271E13B9B1002EDCC2 /* ContainerVC */ = {
 			isa = PBXGroup;
 			children = (
 				6929DF331E13C9B0002EDCC2 /* ContainerVC.swift */,
 			);
-			name = ContainerViewController;
+			name = ContainerVC;
 			sourceTree = "<group>";
 		};
 		6929DF2A1E13BBAC002EDCC2 /* ParentClassess */ = {
@@ -239,6 +253,31 @@
 			name = HorizontolMenuView;
 			sourceTree = "<group>";
 		};
+		699942201E1F59D900B526E7 /* MapViewController */ = {
+			isa = PBXGroup;
+			children = (
+				699942211E1F5A3600B526E7 /* MapViewController.swift */,
+			);
+			name = MapViewController;
+			sourceTree = "<group>";
+		};
+		699942431E1F922F00B526E7 /* Models_WebServices */ = {
+			isa = PBXGroup;
+			children = (
+				699942481E1F9AAB00B526E7 /* Webservice */,
+			);
+			name = Models_WebServices;
+			sourceTree = "<group>";
+		};
+		699942481E1F9AAB00B526E7 /* Webservice */ = {
+			isa = PBXGroup;
+			children = (
+				699942441E1F927D00B526E7 /* Webservice.swift */,
+				699942461E1F9A9500B526E7 /* Webservice+APICalls.swift */,
+			);
+			name = Webservice;
+			sourceTree = "<group>";
+		};
 		69DD63811E1D0B4200FD0901 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -246,6 +285,7 @@
 				69DD63821E1D0B4200FD0901 /* Bolts.framework */,
 				69DD63831E1D0B4200FD0901 /* FBSDKCoreKit.framework */,
 				69DD63841E1D0B4200FD0901 /* FBSDKLoginKit.framework */,
+				9834BA011732D617A2968FBA /* Pods_Tilyn.framework */,
 			);
 			path = Frameworks;
 			sourceTree = "<group>";
@@ -258,6 +298,15 @@
 			name = StoreDetailVC;
 			sourceTree = "<group>";
 		};
+		6F756CBD2D088ECA24581906 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B407992B601AABBB12D183A9 /* Pods-Tilyn.debug.xcconfig */,
+				602FAE86220F0D9F3BBC81BD /* Pods-Tilyn.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -265,9 +314,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6929DF1C1E13B546002EDCC2 /* Build configuration list for PBXNativeTarget "Tilyn" */;
 			buildPhases = (
+				79C32104CEDBA1514106ECC2 /* [CP] Check Pods Manifest.lock */,
 				6929DF031E13B546002EDCC2 /* Sources */,
 				6929DF041E13B546002EDCC2 /* Frameworks */,
 				6929DF051E13B546002EDCC2 /* Resources */,
+				A72C83D391C65800645F4F13 /* [CP] Embed Pods Frameworks */,
+				67A3377F7D29C3A06C9BBBEB /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -329,6 +381,54 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		67A3377F7D29C3A06C9BBBEB /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Tilyn/Pods-Tilyn-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		79C32104CEDBA1514106ECC2 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		A72C83D391C65800645F4F13 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Tilyn/Pods-Tilyn-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		6929DF031E13B546002EDCC2 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -341,6 +441,7 @@
 				696421781E163256003FF813 /* BlurViews.swift in Sources */,
 				6929DF261E13B8E2002EDCC2 /* ReadMe.text in Sources */,
 				6969B31F1E1CDCD90093F02C /* ProfileViewController.swift in Sources */,
+				699942221E1F5A3600B526E7 /* MapViewController.swift in Sources */,
 				69A34DF61E1E5570009EE9CA /* IntrectiveNavigationCtroller.swift in Sources */,
 				6929DF341E13C9B0002EDCC2 /* ContainerVC.swift in Sources */,
 				6929DF291E13BBA6002EDCC2 /* ParentViewController.swift in Sources */,
@@ -349,8 +450,10 @@
 				69567C691E1E099800556A3F /* StoreDetailVC.swift in Sources */,
 				6969B31C1E1CC8F00093F02C /* CustomTabbarController.swift in Sources */,
 				6984B5F31E14D77200006205 /* HomeViewController.swift in Sources */,
+				699942471E1F9A9500B526E7 /* Webservice+APICalls.swift in Sources */,
 				6929DF241E13B628002EDCC2 /* AppDelegate.swift in Sources */,
 				6929DF2F1E13BF04002EDCC2 /* Constants.swift in Sources */,
+				699942451E1F927D00B526E7 /* Webservice.swift in Sources */,
 				6929DF131E13B546002EDCC2 /* Tilyn.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -470,6 +573,7 @@
 		};
 		6929DF1D1E13B546002EDCC2 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B407992B601AABBB12D183A9 /* Pods-Tilyn.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 5GL3E4GW7P;
@@ -479,7 +583,7 @@
 					"$(PROJECT_DIR)/Frameworks",
 				);
 				INFOPLIST_FILE = Tilyn/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Yudiz.Tilyn;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -489,6 +593,7 @@
 		};
 		6929DF1E1E13B546002EDCC2 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 602FAE86220F0D9F3BBC81BD /* Pods-Tilyn.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 5GL3E4GW7P;
@@ -498,7 +603,7 @@
 					"$(PROJECT_DIR)/Frameworks",
 				);
 				INFOPLIST_FILE = Tilyn/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Yudiz.Tilyn;
 				PRODUCT_NAME = "$(TARGET_NAME)";

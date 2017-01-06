@@ -30,8 +30,16 @@ class LoginViewController: ParentViewController {
 
     
     @IBAction func facebookLoginBtnTapped(sender: UIButton) {
-        self.performSegue(withIdentifier: "LoginToHomeSegue", sender: nil)
+        //self.performSegue(withIdentifier: "LoginToHomeSegue", sender: nil)
         //loginWithFacebook()
+        let params = ["vFacebookId" : "6545456454545",
+                      "vEmail" : "vikash@gmail.com",
+                      "vProfileImage": "https://static.pexels.com/photos/20974/pexels-photo.jpg",
+                      "vFullName" : "Vikash kumar",
+                      "eDeviceType" : "ios"]
+        wsCall.facebookLogin(param: params) {(res, code) in
+         //print(res)
+        }
     }
     
     

@@ -29,6 +29,7 @@ class HomeViewController: ParentViewController {
         super.viewDidLoad()
         loadHorizontalMenuView()
         // Do any additional setup after loading the view.
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -62,6 +63,7 @@ class HomeViewController: ParentViewController {
             self.collectionViewScrollToIndex(index)
         }
     }
+    
 }
 
 //MARK: IBActions
@@ -72,6 +74,9 @@ extension HomeViewController {
         self.push(controller: searchVC, inDirection: kCATransitionFromBottom)
     }
     
+    @IBAction func mapButtonTapped(sender: UIButton) {
+        self.performSegue(withIdentifier: "mapViewSegue", sender: nil)
+    }
 }
 
 //MARK: CollectionView DataSource and Delegate
@@ -86,6 +91,7 @@ extension HomeViewController : UICollectionViewDelegateFlowLayout, UICollectionV
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! ContainerCell
+        cell.viewController = self
         currentMenuType = MenuType.type(with: indexPath.row)
         cell.tableview.reloadData()
         return cell
@@ -156,10 +162,13 @@ extension HomeViewController : UITableViewDataSource, UITableViewDelegate {
 //MARK: ContainerCell
 class ContainerCell: CollectionViewCell {
     @IBOutlet var tableview: UITableView!
+    weak var viewController: UIViewController?
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
     }
+    
 }
 //MARK: NearYouCell
 class RestaurantCell : TableViewCell {

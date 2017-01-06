@@ -20,6 +20,8 @@ let _googleUrl              = "https://maps.googleapis.com/maps/api/place"
 let _fbLoginReadPermissions = ["public_profile","email"]
 let _fbUserInfoRequestParam = "email, first_name,  last_name, name, id, gender, picture.type(large)"
 
+let _googleMapAPIKey        = "AIzaSyCMxDUq4wCyis7M-T1Efl5KLEzwuT56ijY" //From Account - vikash@itindia.co.in
+
 let _defaultCenter          = NotificationCenter.default
 let _userDefault            = UserDefaults.standard
 let _appDelegator           = UIApplication.shared.delegate! as! AppDelegate
