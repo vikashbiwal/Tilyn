@@ -15,7 +15,7 @@ let kTimeOut            = "The request timed out"
 let kTokenExpire        = "Session expired - please login again."
 let _appName            = "Tylin"
 
-typealias ResponseBlock = (_ json: Any?, _ flag: Int) -> ()
+typealias ResponseBlock = (_ response: Response) -> ()
 
 class WebService {
 
@@ -49,13 +49,13 @@ class WebService {
                     jprint("Response Code: \(response.statusCode)")
                     jprint("Response(\(relativePath)): \(respObj)")
                     if response.statusCode == 200 {
-                        block(respObj, response.statusCode)
+                        block(Response(respObj, response.statusCode))
                     } else {
-                        block(respObj, response.statusCode)
+                        block(Response(respObj, response.statusCode))
                     }
                 } else {
                     // There might me no case this can get execute
-                    block(nil, 404)
+                    block(Response(nil, 404))
                 }
             }
             
@@ -69,34 +69,23 @@ class WebService {
                         let errorDict = (try? JSONSerialization.jsonObject(with: data as Data, options: JSONSerialization.ReadingOptions.mutableContainers)) as? NSDictionary
                         if errorDict != nil {
                             jprint("Error(\(relativePath)): \(errorDict!)")
-                            block(errorDict!, response.statusCode)
+                            block(Response(errorDict, response.statusCode))
                             if response.statusCode == 423 {
                                 //TODO
                             }
                         } else {
-                            let code = response.statusCode
-                            block(nil, code)
+                            block(Response(nil, response.statusCode))
                         }
                     } else {
-                        block(nil, response.statusCode)
+                        block(Response(nil, response.statusCode))
                     }
                     // If response not found rely on error code to find the issue
-                } else if error.code == -1009  {
-                    jprint("Error(\(relativePath)): \(error)")
-                    block([_appName: kInternetDown], error.code)
-                    return
-                } else if error.code == -1003  {
-                    jprint("Error(\(relativePath)): \(error)")
-                    block([_appName: kHostDown], error.code)
-                    return
-                } else if error.code == -1001  {
-                    jprint("Error(\(relativePath)): \(error)")
-                    block([_appName: kTimeOut], error.code)
-                    return
                 } else {
                     jprint("Error(\(relativePath)): \(error)")
-                    block(nil, error.code)
+                    block(Response(nil, error.code))
                 }
+                
+                
             }
             addInterNetListner()
         }
@@ -112,7 +101,7 @@ class WebService {
 extension WebService {
     
     //MARK: GET REQUEST
-    func GET_REQUEST(relPath: String, param: [String: Any]?, block: @escaping ResponseBlock)-> DataRequest?{
+     func GET_REQUEST(relPath: String, param: [String: Any]?, block: @escaping ResponseBlock)-> DataRequest?{
         do{
             return manager.request(try apiUrl(relPath: relPath), method: HTTPMethod.get, parameters: param, encoding: paramEncode, headers: headers).responseJSON { (resObj) in
                 switch resObj.result {
@@ -139,7 +128,7 @@ extension WebService {
     }
     
     //MARK: POST REQUEST
-    func POST_REQUEST(relPath: String, param: [String: Any]?, block: @escaping ResponseBlock)-> DataRequest?{
+     func POST_REQUEST(relPath: String, param: [String: Any]?, block: @escaping ResponseBlock)-> DataRequest?{
         do{
             return manager.request(try apiUrl(relPath: relPath), method: HTTPMethod.post, parameters: param, encoding: paramEncode, headers: headers).responseJSON { (resObj) in
                 switch resObj.result{
@@ -168,7 +157,7 @@ extension WebService {
     }
     
     //MARK: UPLOAD IMAGE
-    func UPLOAD_IMAGE(relPath: String,img: UIImage,param: [String: String]?, block: @escaping ResponseBlock, progress: WSProgress?){
+     func UPLOAD_IMAGE(relPath: String,img: UIImage,param: [String: String]?, block: @escaping ResponseBlock, progress: WSProgress?){
         do{
             manager.upload(multipartFormData: { (formData) in
                 formData.append(UIImageJPEGRepresentation(img, 1.0)!, withName: "keyName", fileName: "image.jpeg", mimeType: "image/jpeg")
@@ -232,7 +221,7 @@ extension WebService {
                     }
                 }.resume()
             
-        }catch{
+        } catch {
             block(nil, false)
         }
     }
@@ -273,7 +262,7 @@ extension WebService {
 }
 
 //MARK: TOKEN ADAPTER
-class TokenAdapter: RequestAdapter {
+fileprivate class TokenAdapter: RequestAdapter {
     private let token: String
     
     init(_ token: String) {
@@ -282,13 +271,14 @@ class TokenAdapter: RequestAdapter {
     
     func adapt(_ urlRequest: URLRequest) throws -> URLRequest {
         var urlRequest = urlRequest
-        urlRequest.setValue("Bearer " + token, forHTTPHeaderField: "Authorization")
+        urlRequest.setValue("Bearer " + token, forHTTPHeaderField: "Vauthtoken")
+        print("Token added : \(token)")
         return urlRequest
     }
 }
 
 // MARK: - INTERNET AVAILABILITY
-extension WebService {
+fileprivate extension WebService {
     
     func addInterNetListner(){
         networkManager.listener = { (status) in
@@ -310,4 +300,42 @@ extension WebService {
     }
 }
 
+
+
+//Structure will be used for manage the ws response.
+struct Response {
+    var isSuccess  = false
+    let json: Any?
+    var message: String
+    var code = 0
+    
+    init(_ rJson : Any?, _ code : Int) {
+        self.isSuccess = false
+        self.json = rJson
+        self.message = ""
+        self.code = code
+        
+        if code == 200 {
+            isSuccess = true
+            if let json = rJson as? [String: Any] {
+                if let msg = json["Message"] as? String {
+                    message = msg
+                }
+            }
+        } else if  code == -1009  {
+            //[_appName: kInternetDown]
+            message = kInternetDown
+        } else if code == -1003  {
+            //[_appName: kHostDown];
+            message = kHostDown
+        } else if code == -1001  {
+            //[_appName: kTimeOut]
+            message = kTimeOut
+        } else {
+            message = "Some thing happen wrong."
+        }
+
+    }
+    
+}
 

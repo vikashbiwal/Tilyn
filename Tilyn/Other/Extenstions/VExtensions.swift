@@ -160,7 +160,6 @@ extension UIViewController {
 
 //MARK: UILocalizedIndexedCollaction configuration
 extension UILocalizedIndexedCollation {
-   
     //Add below commented line in your viewController for accesing func partitionObjects(_:)
     // let indexedCollation = UILocalizedIndexedCollation.currentCollation()
 
@@ -246,6 +245,7 @@ class CornerRadiusView: ConstrainedView {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
         corners = UIRectCorner()
         if topLeft {
             corners.insert(.topLeft)

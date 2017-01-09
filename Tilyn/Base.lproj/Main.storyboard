@@ -18,12 +18,12 @@
         <!--Container-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" userLabel="Container" customClass="ContainerVC" customModule="Tilyn" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SBID_ContainerVC" id="BYZ-38-t0r" userLabel="Container" customClass="ContainerVC" customModule="Tilyn" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                    <view key="view" clipsSubviews="YES" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -56,7 +56,21 @@
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" image="avatar" translatesAutoresizingMaskIntoConstraints="NO" id="kfE-uN-7wD">
+                                                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xIn-BK-scx" customClass="CornerRadiusView" customModule="Tilyn" customModuleProvider="target">
+                                                    <rect key="frame" x="111" y="34" width="77" height="77"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="77" id="AM3-uI-GKV"/>
+                                                        <constraint firstAttribute="width" secondItem="xIn-BK-scx" secondAttribute="height" multiplier="1:1" id="K3v-Fe-A3l"/>
+                                                    </constraints>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="blurEffect" value="YES"/>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                            <real key="value" value="38.5"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                </view>
+                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" image="avatar" translatesAutoresizingMaskIntoConstraints="NO" id="kfE-uN-7wD" customClass="RoundedImageView" customModule="Tilyn" customModuleProvider="target">
                                                     <rect key="frame" x="112" y="35" width="75" height="75"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="75" id="BSF-E6-0h5"/>
@@ -64,7 +78,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9xc-mg-vHZ">
-                                                    <rect key="frame" x="112.5" y="34.5" width="75" height="75"/>
+                                                    <rect key="frame" x="112" y="35" width="75" height="75"/>
                                                     <connections>
                                                         <action selector="profileBtnTappedWithSender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="nfR-SH-1v8"/>
                                                     </connections>
@@ -72,11 +86,13 @@
                                             </subviews>
                                             <color key="backgroundColor" red="0.18823529411764706" green="0.23529411764705882" blue="0.24705882352941178" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
+                                                <constraint firstItem="xIn-BK-scx" firstAttribute="centerY" secondItem="kfE-uN-7wD" secondAttribute="centerY" id="4YV-zT-tZo"/>
                                                 <constraint firstItem="cdQ-fz-sN3" firstAttribute="leading" secondItem="yeY-xL-aoS" secondAttribute="leading" id="8dh-dO-fYj"/>
                                                 <constraint firstItem="9xc-mg-vHZ" firstAttribute="height" secondItem="kfE-uN-7wD" secondAttribute="height" id="9fI-QS-l2L"/>
                                                 <constraint firstItem="kfE-uN-7wD" firstAttribute="centerY" secondItem="yeY-xL-aoS" secondAttribute="centerY" id="AnF-1p-xho"/>
                                                 <constraint firstItem="9xc-mg-vHZ" firstAttribute="centerY" secondItem="kfE-uN-7wD" secondAttribute="centerY" id="C43-H2-8Pk"/>
                                                 <constraint firstItem="9xc-mg-vHZ" firstAttribute="centerX" secondItem="kfE-uN-7wD" secondAttribute="centerX" id="Dux-Gm-A4S"/>
+                                                <constraint firstItem="xIn-BK-scx" firstAttribute="centerX" secondItem="kfE-uN-7wD" secondAttribute="centerX" id="Jod-jX-Gmn"/>
                                                 <constraint firstItem="9xc-mg-vHZ" firstAttribute="width" secondItem="kfE-uN-7wD" secondAttribute="width" id="Xej-bv-QAc"/>
                                                 <constraint firstAttribute="bottom" secondItem="cdQ-fz-sN3" secondAttribute="bottom" id="Zg4-vC-QNM"/>
                                                 <constraint firstAttribute="trailing" secondItem="cdQ-fz-sN3" secondAttribute="trailing" id="heT-Wg-PTA"/>
@@ -101,7 +117,7 @@
                                                             </constraints>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZDB-ai-QxM" customClass="WidthLabel" customModule="Tilyn" customModuleProvider="target">
-                                                            <rect key="frame" x="55" y="27" width="40.5" height="17"/>
+                                                            <rect key="frame" x="55" y="27" width="41" height="17"/>
                                                             <fontDescription key="fontDescription" name="KeepCalm-Medium" family="Keep Calm" pointSize="14"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <nil key="highlightedColor"/>
@@ -164,6 +180,8 @@
                     <connections>
                         <outlet property="containerView" destination="iVq-Ck-O9G" id="IHG-WR-sbZ"/>
                         <outlet property="containerViewLeadingSpace" destination="7ow-ig-L2U" id="eV5-xQ-HKd"/>
+                        <outlet property="imgProfile" destination="kfE-uN-7wD" id="q19-tq-yXs"/>
+                        <outlet property="lblEmail" destination="dXY-Bw-vqV" id="LLb-L5-r3M"/>
                         <outlet property="menuView" destination="KzQ-im-vu2" id="39N-Qp-mam"/>
                         <outlet property="menuViewLeadingSpace" destination="Uo4-v5-ZWh" id="7sU-IF-Sdd"/>
                         <outlet property="tableView" destination="rC0-J9-dsS" id="ZFg-UX-ngY"/>
@@ -337,7 +355,7 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="375" height="558"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <prototypes>
-                                                        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="nearbyMenuCell" rowHeight="215" id="6Mp-xs-HdF" customClass="TableViewCell" customModule="Tilyn" customModuleProvider="target">
+                                                        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="nearbyMenuCell" rowHeight="215" id="6Mp-xs-HdF" customClass="StoreCell" customModule="Tilyn" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="28" width="375" height="215"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6Mp-xs-HdF" id="a6N-1q-vPn">
@@ -354,19 +372,19 @@
                                                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="78"/>
                                                                             </imageView>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bombay Express" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QqS-gT-6a7">
-                                                                                <rect key="frame" x="26" y="24" width="119.5" height="17"/>
+                                                                                <rect key="frame" x="26" y="24" width="120" height="17"/>
                                                                                 <fontDescription key="fontDescription" name="KeepCalm-Medium" family="Keep Calm" pointSize="14"/>
                                                                                 <color key="textColor" red="0.32941176470588235" green="0.38039215686274508" blue="0.40392156862745099" alpha="1" colorSpace="calibratedRGB"/>
                                                                                 <nil key="highlightedColor"/>
                                                                             </label>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="C/ Ahmedabad, Gujarat" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tan-eX-uo5">
-                                                                                <rect key="frame" x="26" y="47" width="145.5" height="14"/>
+                                                                                <rect key="frame" x="26" y="47" width="146" height="15"/>
                                                                                 <fontDescription key="fontDescription" name="KeepCalm-Medium" family="Keep Calm" pointSize="12"/>
                                                                                 <color key="textColor" red="0.54509803921568623" green="0.59607843137254901" blue="0.61960784313725492" alpha="1" colorSpace="calibratedRGB"/>
                                                                                 <nil key="highlightedColor"/>
                                                                             </label>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3.8 KM Away" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Ao-PV-dnV">
-                                                                                <rect key="frame" x="271.5" y="47" width="83.5" height="14"/>
+                                                                                <rect key="frame" x="271" y="47" width="84" height="15"/>
                                                                                 <fontDescription key="fontDescription" name="KeepCalm-Medium" family="Keep Calm" pointSize="12"/>
                                                                                 <color key="textColor" red="0.5450980392" green="0.59607843140000005" blue="0.61960784310000006" alpha="1" colorSpace="calibratedRGB"/>
                                                                                 <nil key="highlightedColor"/>
@@ -409,6 +427,11 @@
                                                                 </constraints>
                                                             </tableViewCellContentView>
                                                             <connections>
+                                                                <outlet property="img_store" destination="jQ8-T3-SFi" id="BnG-ma-6J9"/>
+                                                                <outlet property="img_storeCover" destination="RAb-uv-loW" id="tBy-qT-Qxh"/>
+                                                                <outlet property="lblAddress" destination="Tan-eX-uo5" id="khp-qH-bml"/>
+                                                                <outlet property="lblTitle" destination="QqS-gT-6a7" id="v4n-8s-PBs"/>
+                                                                <outlet property="lbldistance" destination="5Ao-PV-dnV" id="2aL-IK-bs2"/>
                                                                 <outletCollection property="horizontalConstraints" destination="cFU-nW-ICR" collectionClass="NSMutableArray" id="sTy-dh-bC0"/>
                                                                 <outletCollection property="horizontalConstraints" destination="dUO-gW-VIP" collectionClass="NSMutableArray" id="ahx-Hy-1Bj"/>
                                                                 <outletCollection property="horizontalConstraints" destination="fnq-YF-DeK" collectionClass="NSMutableArray" id="WnG-hR-sUR"/>
@@ -487,7 +510,7 @@
                                                                                 <rect key="frame" x="0.0" y="65" width="359" height="45"/>
                                                                                 <subviews>
                                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="One Free Coffee in 3 more visits" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U32-gq-hEd">
-                                                                                        <rect key="frame" x="67.5" y="14" width="224.5" height="16"/>
+                                                                                        <rect key="frame" x="67" y="14" width="225" height="16"/>
                                                                                         <fontDescription key="fontDescription" name="KeepCalm-Medium" family="Keep Calm" pointSize="13"/>
                                                                                         <color key="textColor" red="0.32941176470588235" green="0.38039215686274508" blue="0.40392156862745099" alpha="1" colorSpace="calibratedRGB"/>
                                                                                         <nil key="highlightedColor"/>
@@ -495,9 +518,9 @@
                                                                                 </subviews>
                                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                                 <constraints>
-                                                                                    <constraint firstItem="U32-gq-hEd" firstAttribute="centerY" secondItem="qQy-mc-soB" secondAttribute="centerY" id="374-2s-qCC"/>
-                                                                                    <constraint firstItem="U32-gq-hEd" firstAttribute="centerX" secondItem="qQy-mc-soB" secondAttribute="centerX" id="9xe-O7-5mV"/>
+                                                                                    <constraint firstItem="U32-gq-hEd" firstAttribute="top" secondItem="qQy-mc-soB" secondAttribute="top" constant="14" id="2gy-bm-IzT"/>
                                                                                     <constraint firstAttribute="height" constant="45" id="Wkh-bL-HYw"/>
+                                                                                    <constraint firstItem="U32-gq-hEd" firstAttribute="centerX" secondItem="qQy-mc-soB" secondAttribute="centerX" id="bsc-WV-0hO"/>
                                                                                 </constraints>
                                                                             </view>
                                                                         </subviews>
@@ -517,13 +540,13 @@
                                                                         </constraints>
                                                                     </view>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bombay Express" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iNi-mu-FWw">
-                                                                        <rect key="frame" x="28" y="25" width="119.5" height="17"/>
+                                                                        <rect key="frame" x="28" y="25" width="120" height="17"/>
                                                                         <fontDescription key="fontDescription" name="KeepCalm-Medium" family="Keep Calm" pointSize="14"/>
                                                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A-6, Ahmedabad, Gujarat" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dK0-T9-0nw">
-                                                                        <rect key="frame" x="28" y="47" width="159" height="14"/>
+                                                                        <rect key="frame" x="28" y="47" width="159" height="15"/>
                                                                         <fontDescription key="fontDescription" name="KeepCalm-Medium" family="Keep Calm" pointSize="12"/>
                                                                         <color key="textColor" red="0.81568627450980391" green="0.85490196078431369" blue="0.87058823529411766" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <nil key="highlightedColor"/>
@@ -540,8 +563,6 @@
                                                                     <constraint firstItem="hpQ-Qh-kJN" firstAttribute="top" secondItem="tx3-87-Idn" secondAttribute="top" id="QGZ-sL-Elo"/>
                                                                     <constraint firstAttribute="bottom" secondItem="hpQ-Qh-kJN" secondAttribute="bottom" id="Qah-hi-6j3"/>
                                                                     <constraint firstItem="iNi-mu-FWw" firstAttribute="top" secondItem="tx3-87-Idn" secondAttribute="top" constant="25" id="VhK-MI-9QG"/>
-                                                                    <constraint firstItem="U32-gq-hEd" firstAttribute="centerY" secondItem="tx3-87-Idn" secondAttribute="centerY" constant="56" id="XQD-kq-wVO"/>
-                                                                    <constraint firstItem="U32-gq-hEd" firstAttribute="centerX" secondItem="tx3-87-Idn" secondAttribute="centerX" id="bQO-WS-1eg"/>
                                                                     <constraint firstItem="dK0-T9-0nw" firstAttribute="top" secondItem="iNi-mu-FWw" secondAttribute="bottom" constant="5" id="zNG-OA-H8b"/>
                                                                 </constraints>
                                                             </tableViewCellContentView>
@@ -625,13 +646,13 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Change City" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pdk-XM-Quw">
-                                <rect key="frame" x="134" y="227.5" width="108.5" height="20.5"/>
+                                <rect key="frame" x="133.5" y="227.5" width="108.5" height="20.5"/>
                                 <fontDescription key="fontDescription" name="KeepCalm-Medium" family="Keep Calm" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CKm-2P-MRP">
-                                <rect key="frame" x="63" y="268" width="250" height="38"/>
+                                <rect key="frame" x="62" y="268" width="250" height="38"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Search_Background" translatesAutoresizingMaskIntoConstraints="NO" id="zbv-IO-NAX">
                                         <rect key="frame" x="0.0" y="0.0" width="250" height="38"/>
@@ -674,13 +695,13 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose Language" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9s5-6N-abq">
-                                <rect key="frame" x="109.5" y="356" width="158" height="20.5"/>
+                                <rect key="frame" x="108" y="356" width="158" height="20.5"/>
                                 <fontDescription key="fontDescription" name="KeepCalm-Medium" family="Keep Calm" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="XmI-4G-SlU">
-                                <rect key="frame" x="123" y="409" width="130" height="28"/>
+                                <rect key="frame" x="123" y="409.5" width="130" height="28"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eyc-kY-WeR">
                                         <rect key="frame" x="0.0" y="0.0" width="45" height="28"/>
@@ -912,7 +933,7 @@
         <!--Login-->
         <scene sceneID="hj8-cV-ZK7">
             <objects>
-                <viewController id="A67-9C-9IY" userLabel="Login" customClass="LoginViewController" customModule="Tilyn" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SBID_Login" id="A67-9C-9IY" userLabel="Login" customClass="LoginViewController" customModule="Tilyn" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="9cI-CV-bkD"/>
                         <viewControllerLayoutGuide type="bottom" id="dd8-Qt-kKD"/>
@@ -1011,17 +1032,17 @@
                                         </userDefinedRuntimeAttributes>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sarena Villiams" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oY2-uQ-gHI">
-                                        <rect key="frame" x="104.5" y="150" width="167" height="25"/>
+                                        <rect key="frame" x="105" y="150" width="167" height="26"/>
                                         <fontDescription key="fontDescription" name="KeepCalm-Medium" family="Keep Calm" pointSize="21"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="sarena@gmail.com" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zr5-cN-GMb">
-                                        <rect key="frame" x="108.5" y="191" width="158" height="19"/>
+                                        <rect key="frame" x="110" y="192" width="158" height="20"/>
                                         <fontDescription key="fontDescription" name="KeepCalm-Medium" family="Keep Calm" pointSize="16"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="20 Rewards Claimed" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZuL-IN-7RF">
-                                        <rect key="frame" x="90.5" y="283" width="196" height="22"/>
+                                        <rect key="frame" x="90" y="283" width="196" height="22"/>
                                         <fontDescription key="fontDescription" name="KeepCalm-Medium" family="Keep Calm" pointSize="18"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -1036,6 +1057,9 @@
                                         <state key="normal" title="Delete Account">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="deleteAccountBtnTappedWithSender:" destination="7iq-gs-AKd" eventType="touchUpInside" id="Gw1-kV-rnI"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -1068,7 +1092,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Profile" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aaD-dI-9pb">
-                                        <rect key="frame" x="158.5" y="32" width="59" height="20"/>
+                                        <rect key="frame" x="158" y="32" width="59" height="21"/>
                                         <fontDescription key="fontDescription" name="KeepCalm-Medium" family="Keep Calm" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
@@ -1097,6 +1121,9 @@
                     <tabBarItem key="tabBarItem" title="Item" id="sCP-K1-bCI"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="imgProfile" destination="Ph3-Wi-3ZA" id="KXT-wa-Qbi"/>
+                        <outlet property="lblEmail" destination="Zr5-cN-GMb" id="l8S-ko-qGT"/>
+                        <outlet property="lblName" destination="oY2-uQ-gHI" id="6ab-Gh-5lY"/>
                         <outletCollection property="horizontalConstraints" destination="gjp-67-2Xh" collectionClass="NSMutableArray" id="NEB-uh-o5m"/>
                         <outletCollection property="horizontalConstraints" destination="UHw-mi-aoN" collectionClass="NSMutableArray" id="ff2-dP-uS4"/>
                         <outletCollection property="horizontalConstraints" destination="mFk-sg-mMf" collectionClass="NSMutableArray" id="idn-66-mHh"/>
@@ -1138,8 +1165,8 @@
                                             <action selector="parentBackActionWithSender:" destination="7OS-fT-gUM" eventType="touchUpInside" id="OfV-nv-5Mx"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="American Cut Midtown" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rAa-5y-o2h">
-                                        <rect key="frame" x="85" y="32" width="205.5" height="20"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="American Cut Midtown" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rAa-5y-o2h" customClass="WidthLabel" customModule="Tilyn" customModuleProvider="target">
+                                        <rect key="frame" x="85" y="32" width="206" height="21"/>
                                         <fontDescription key="fontDescription" name="KeepCalm-Medium" family="Keep Calm" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
@@ -1178,7 +1205,7 @@
                                                                 <constraint firstAttribute="width" constant="70" id="l2m-lE-PMw"/>
                                                             </constraints>
                                                         </imageView>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="C/O Arroyomolino 14 28042, Madrid" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pr9-0G-zMp">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="C/O Arroyomolino 14 28042, Madrid" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pr9-0G-zMp" customClass="WidthLabel" customModule="Tilyn" customModuleProvider="target">
                                                             <rect key="frame" x="66" y="120" width="243" height="18"/>
                                                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1285,8 +1312,9 @@
                                                                                             <constraint firstAttribute="height" constant="45" id="ipF-dB-66c"/>
                                                                                         </constraints>
                                                                                     </view>
-                                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="One free coffee on 3 more visits" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aVN-qm-xzQ">
+                                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="One free coffee on 3 more visits" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aVN-qm-xzQ" customClass="WidthLabel" customModule="Tilyn" customModuleProvider="target">
                                                                                         <rect key="frame" x="55" y="53" width="245" height="21"/>
+                                                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                                         <nil key="textColor"/>
                                                                                         <nil key="highlightedColor"/>
@@ -1296,8 +1324,6 @@
                                                                                 <constraints>
                                                                                     <constraint firstItem="seP-gt-Uu0" firstAttribute="leading" secondItem="cU4-NW-UP4" secondAttribute="leading" id="LWW-ch-Fnc"/>
                                                                                     <constraint firstAttribute="trailing" secondItem="seP-gt-Uu0" secondAttribute="trailing" id="ag2-Ub-i6a"/>
-                                                                                    <constraint firstItem="aVN-qm-xzQ" firstAttribute="centerX" secondItem="cU4-NW-UP4" secondAttribute="centerX" id="cCP-zz-g7I"/>
-                                                                                    <constraint firstItem="aVN-qm-xzQ" firstAttribute="top" secondItem="seP-gt-Uu0" secondAttribute="bottom" constant="8" id="eh1-ty-nWD"/>
                                                                                     <constraint firstItem="seP-gt-Uu0" firstAttribute="top" secondItem="cU4-NW-UP4" secondAttribute="top" id="yLs-1R-6ZD"/>
                                                                                 </constraints>
                                                                             </view>
@@ -1310,7 +1336,6 @@
                                                                         <constraint firstItem="cU4-NW-UP4" firstAttribute="top" secondItem="Pli-6n-MCx" secondAttribute="top" id="q00-1k-wiW"/>
                                                                     </constraints>
                                                                     <connections>
-                                                                        <outletCollection property="horizontalConstraints" destination="eh1-ty-nWD" collectionClass="NSMutableArray" id="X4A-r8-eB7"/>
                                                                         <outletCollection property="horizontalConstraints" destination="ipF-dB-66c" collectionClass="NSMutableArray" id="EO4-EG-uel"/>
                                                                     </connections>
                                                                 </collectionViewCell>
@@ -1366,7 +1391,7 @@
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zgu-Ym-9RW">
                                                             <rect key="frame" x="0.0" y="0.0" width="355" height="40"/>
                                                             <subviews>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Today's Special Offers" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eTo-yU-AFv">
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Today's Special Offers" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eTo-yU-AFv" customClass="WidthLabel" customModule="Tilyn" customModuleProvider="target">
                                                                     <rect key="frame" x="10" y="11" width="153" height="18"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                                     <color key="textColor" red="0.54019656049999998" green="0.60912907140000006" blue="0.64443742849999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1397,13 +1422,13 @@
                                                                         <rect key="frame" x="0.0" y="0.0" width="355" height="90"/>
                                                                         <autoresizingMask key="autoresizingMask"/>
                                                                         <subviews>
-                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Free Biscute with coffee, join Today!" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gGe-fQ-YcI">
+                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Free Biscute with coffee, join Today!" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gGe-fQ-YcI" customClass="WidthLabel" customModule="Tilyn" customModuleProvider="target">
                                                                                 <rect key="frame" x="11" y="15" width="279" height="19"/>
                                                                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
                                                                                 <nil key="textColor"/>
                                                                                 <nil key="highlightedColor"/>
                                                                             </label>
-                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Updated 3h ago" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0nQ-nQ-mMY">
+                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Updated 3h ago" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0nQ-nQ-mMY" customClass="WidthLabel" customModule="Tilyn" customModuleProvider="target">
                                                                                 <rect key="frame" x="11" y="60" width="96" height="17"/>
                                                                                 <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="14"/>
                                                                                 <nil key="textColor"/>
@@ -1490,7 +1515,7 @@
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eFP-Fk-Gpn">
                                                             <rect key="frame" x="0.0" y="0.0" width="355" height="40"/>
                                                             <subviews>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hGO-m4-16c">
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hGO-m4-16c" customClass="WidthLabel" customModule="Tilyn" customModuleProvider="target">
                                                                     <rect key="frame" x="10" y="11" width="59" height="18"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                                     <color key="textColor" red="0.54019656049999998" green="0.60912907140000006" blue="0.64443742849999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1504,30 +1529,43 @@
                                                                 <constraint firstItem="hGO-m4-16c" firstAttribute="centerY" secondItem="eFP-Fk-Gpn" secondAttribute="centerY" id="M7p-eq-1gI"/>
                                                             </constraints>
                                                         </view>
-                                                        <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="skO-tk-cBG">
-                                                            <rect key="frame" x="0.0" y="93" width="355" height="89"/>
-                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                        </mapView>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="PrahaladNagar, Ahmedabad, Gujarat" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vWf-Kg-mOc">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PrahaladNagar, Ahmedabad, Gujarat" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vWf-Kg-mOc" customClass="WidthLabel" customModule="Tilyn" customModuleProvider="target">
                                                             <rect key="frame" x="8" y="48" width="237" height="38"/>
-                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="3.8 KM AWAY" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VMH-Pz-ihA">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3.8 KM AWAY" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VMH-Pz-ihA" customClass="WidthLabel" customModule="Tilyn" customModuleProvider="target">
                                                             <rect key="frame" x="264" y="58" width="83" height="17"/>
-                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="83" id="Jy4-tc-K7n"/>
+                                                            </constraints>
                                                             <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="14"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rqe-Ez-2om" customClass="GMSMapView">
+                                                            <rect key="frame" x="0.0" y="94" width="355" height="96"/>
+                                                            <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="96" id="K9t-4x-J8b"/>
+                                                            </constraints>
+                                                        </view>
                                                     </subviews>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
+                                                        <constraint firstItem="VMH-Pz-ihA" firstAttribute="top" secondItem="eFP-Fk-Gpn" secondAttribute="bottom" constant="18" id="6fC-WP-pvA"/>
                                                         <constraint firstItem="eFP-Fk-Gpn" firstAttribute="top" secondItem="rc1-23-pPL" secondAttribute="top" id="6zN-78-qld"/>
+                                                        <constraint firstItem="vWf-Kg-mOc" firstAttribute="top" secondItem="eFP-Fk-Gpn" secondAttribute="bottom" constant="8" id="HKc-Oi-eX3"/>
+                                                        <constraint firstAttribute="trailing" secondItem="rqe-Ez-2om" secondAttribute="trailing" id="O4P-Qy-0hp"/>
+                                                        <constraint firstAttribute="trailing" secondItem="VMH-Pz-ihA" secondAttribute="trailing" constant="8" id="TZi-Lz-gCp"/>
+                                                        <constraint firstItem="vWf-Kg-mOc" firstAttribute="leading" secondItem="rc1-23-pPL" secondAttribute="leading" constant="8" id="Uut-h4-vUX"/>
+                                                        <constraint firstItem="rqe-Ez-2om" firstAttribute="top" secondItem="vWf-Kg-mOc" secondAttribute="bottom" constant="8" id="hE8-OF-p7V"/>
                                                         <constraint firstAttribute="trailing" secondItem="eFP-Fk-Gpn" secondAttribute="trailing" id="k6h-fl-DBt"/>
+                                                        <constraint firstAttribute="bottom" secondItem="rqe-Ez-2om" secondAttribute="bottom" id="kor-Fr-TOG"/>
+                                                        <constraint firstItem="VMH-Pz-ihA" firstAttribute="leading" secondItem="vWf-Kg-mOc" secondAttribute="trailing" constant="19" id="mXD-yx-Ahd"/>
                                                         <constraint firstItem="eFP-Fk-Gpn" firstAttribute="leading" secondItem="rc1-23-pPL" secondAttribute="leading" id="z4m-BT-42R"/>
+                                                        <constraint firstItem="rqe-Ez-2om" firstAttribute="leading" secondItem="rc1-23-pPL" secondAttribute="leading" id="zRF-gu-j2t"/>
                                                     </constraints>
                                                 </view>
                                             </subviews>
@@ -1541,6 +1579,12 @@
                                         <color key="backgroundColor" red="0.18823529410000001" green="0.23529411759999999" blue="0.2470588235" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <connections>
                                             <outletCollection property="horizontalConstraints" destination="IHK-rr-GhP" collectionClass="NSMutableArray" id="aSC-wL-D7E"/>
+                                            <outletCollection property="horizontalConstraints" destination="K9t-4x-J8b" collectionClass="NSMutableArray" id="WHP-GT-RZ9"/>
+                                            <outletCollection property="horizontalConstraints" destination="Uut-h4-vUX" collectionClass="NSMutableArray" id="NW5-Oj-gbt"/>
+                                            <outletCollection property="horizontalConstraints" destination="HKc-Oi-eX3" collectionClass="NSMutableArray" id="dN2-Jk-Bh3"/>
+                                            <outletCollection property="horizontalConstraints" destination="hE8-OF-p7V" collectionClass="NSMutableArray" id="eNX-sP-6Ff"/>
+                                            <outletCollection property="horizontalConstraints" destination="6fC-WP-pvA" collectionClass="NSMutableArray" id="cL1-iL-72Z"/>
+                                            <outletCollection property="horizontalConstraints" destination="Jy4-tc-K7n" collectionClass="NSMutableArray" id="N1Q-HO-WTa"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="shareCell" rowHeight="40" id="OgJ-LZ-bQw" customClass="TableViewCell" customModule="Tilyn" customModuleProvider="target">
@@ -1563,7 +1607,7 @@
                                                                 <action selector="shareBtnTappedWithSender:" destination="7OS-fT-gUM" eventType="touchUpInside" id="PVY-Ag-jfw"/>
                                                             </connections>
                                                         </button>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Share with friends..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="72E-yd-ZBk">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Share with friends..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="72E-yd-ZBk" customClass="WidthLabel" customModule="Tilyn" customModuleProvider="target">
                                                             <rect key="frame" x="11" y="5" width="153" height="21"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1615,7 +1659,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0Nf-8r-x4F" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1273" y="1217"/>
+            <point key="canvasLocation" x="-1274.4000000000001" y="1216.6416791604199"/>
         </scene>
         <!--MapScreen-->
         <scene sceneID="oFA-T7-d5h">
@@ -1644,7 +1688,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uo8-1b-cB9">
-                                        <rect key="frame" x="150" y="32" width="76.5" height="20"/>
+                                        <rect key="frame" x="149" y="32" width="77" height="21"/>
                                         <fontDescription key="fontDescription" name="KeepCalm-Medium" family="Keep Calm" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
@@ -1659,7 +1703,7 @@
                                     <constraint firstItem="Uo8-1b-cB9" firstAttribute="centerX" secondItem="eds-fQ-8RF" secondAttribute="centerX" id="XLa-Nn-PPP"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cot-tS-Nk8">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cot-tS-Nk8" customClass="GMSMapView">
                                 <rect key="frame" x="0.0" y="64" width="375" height="400"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>

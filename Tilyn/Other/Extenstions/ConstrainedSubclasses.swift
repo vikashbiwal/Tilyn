@@ -70,7 +70,7 @@ class HeightRoundLabel: UILabel {
     }
 }
 
-
+//Re-Scalling to  button's icon as per button's size.
 class IconButton: UIButton {
     override func awakeFromNib() {
         if let img = self.imageView{
@@ -185,6 +185,57 @@ class TableViewCell: UITableViewCell {
             }
         }
     }
-    
-    
 }
+
+
+class RoundedImageView: UIImageView {
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        self.layer.cornerRadius = (self.bounds.size.height * _widthRatio) / 2
+        self.layer.masksToBounds = true
+    }
+}
+
+class RoundedView: UIView {
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        self.layer.cornerRadius = (self.bounds.size.height * _widthRatio) / 2
+        self.layer.masksToBounds = true
+    }
+}
+
+class RoundedCollectionView: UICollectionView {
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        self.layer.cornerRadius = (self.bounds.size.height * _widthRatio) / 2
+        self.layer.masksToBounds = true
+    }
+}
+
+
+class RoundedButton: UIButton {
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        self.layer.cornerRadius = (self.bounds.size.height * _widthRatio ) / 2
+        self.layer.masksToBounds = true
+    }
+}
+
+class RoundedLabel: UILabel {
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        self.layer.cornerRadius = self.bounds.size.height / 2
+        self.layer.masksToBounds = true
+    }
+}
+
+class RoundedLabelWithWidthRatio: UILabel {
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        font = font.withSize(font.pointSize * _widthRatio)
+        self.layer.cornerRadius = (self.bounds.size.height * _widthRatio ) / 2
+        self.layer.masksToBounds = true
+    }
+}
+
+

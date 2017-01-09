@@ -9,6 +9,8 @@
 import UIKit
 import CoreData
 import FBSDKCoreKit
+import GoogleMaps
+import GooglePlaces
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -18,11 +20,31 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         self.window?.backgroundColor = UIColor.white
-        // Override point for customization after application launch.
+       
+        GMSServices.provideAPIKey(_googleMapAPIKey)
+        GMSPlacesClient.provideAPIKey(_googleMapAPIKey)
+        
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
+        
+        self.directLogin()
         return true
     }
 
+    //Direct Login, if already logged in past.
+    func directLogin() {
+        if let info = unArchiveObjectForKey(kLoggedInUserKey) as? [String : Any] {
+            me = User(info)
+            let authToken = RConverter.string(info["vAuthToken"])
+            wsCall.setAccesTokenToHeader(token: authToken)
+            
+            let nav = window?.rootViewController as! UINavigationController
+            let loginVC = nav.storyboard!.instantiateViewController(withIdentifier: "SBID_Login")
+            let containerVC = nav.storyboard!.instantiateViewController(withIdentifier: "SBID_ContainerVC")
+            
+            nav.viewControllers = [loginVC, containerVC]
+        }
+    }
+    
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.

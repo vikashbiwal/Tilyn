@@ -16,28 +16,27 @@ class ContainerVC: ParentViewController {
     @IBOutlet weak var containerViewLeadingSpace: NSLayoutConstraint!
     @IBOutlet weak var menuViewLeadingSpace: NSLayoutConstraint!
     
+    @IBOutlet weak var lblEmail: UILabel!
+    @IBOutlet weak var imgProfile: UIImageView!
+    
     var isShutterOpened = false
     let shutterMaxXValue = 300 * _widthRatio
     var menus : [MenuItem] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         self.tableView.tableFooterView = UIView()
         self.setShutterActionBlock()
         self.setMenuItems()
-        
+        self.setProfileInfo()
     }
 
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        //let edgeGesture = UIPanGestureRecognizer(target: self, action: #selector(self.screenEdgeGestureAction(gesture:)))
-        //edgeGesture.delegate = self
-        //self.view.addGestureRecognizer(edgeGesture)
-     
-    }
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    //Set user's profile info
+    func setProfileInfo() {
+        //lblName.text = me.name
+        lblEmail.text = me.email
+        imgProfile.kf.setImage(with: URL(string: me.profileImage))
     }
 
 
@@ -107,22 +106,6 @@ extension ContainerVC : UIGestureRecognizerDelegate {
         let translation = gesture.translation(in: self.view)
        print("Translation in x : \(translation.x)")
        
-//        switch gesture.state {
-//        case .began:
-//            print("-------began state-------")
-//        case .cancelled, .failed :
-//            print("-------Canceled or Failed state-------")
-//        case .ended :
-//            print("-------Ended state-------")
-//        case .changed :
-//            print("-------Changed state-------")
-//            if translation.x >= 0 {
-//                self.containerViewLeadingSpace.constant = translation.x
-//            }
-//
-//        default:
-//            print("-------Default state-------")
-//        }
     }
     
     //Gesture Delegate

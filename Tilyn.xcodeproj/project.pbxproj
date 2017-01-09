@@ -19,7 +19,6 @@
 		6929DF311E13C0C0002EDCC2 /* ConstrainedSubclasses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6929DF301E13C0C0002EDCC2 /* ConstrainedSubclasses.swift */; };
 		6929DF341E13C9B0002EDCC2 /* ContainerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6929DF331E13C9B0002EDCC2 /* ContainerVC.swift */; };
 		69567C691E1E099800556A3F /* StoreDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69567C681E1E099800556A3F /* StoreDetailVC.swift */; };
-		69567C6B1E1E311A00556A3F /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69567C6A1E1E311A00556A3F /* MapKit.framework */; };
 		69620DB81E1A1A60006D2E2C /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69620DB71E1A1A60006D2E2C /* SearchViewController.swift */; };
 		696421781E163256003FF813 /* BlurViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 696421771E163256003FF813 /* BlurViews.swift */; };
 		6964217B1E1635D2003FF813 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6964217A1E1635D2003FF813 /* LoginViewController.swift */; };
@@ -33,8 +32,16 @@
 		6984B5FA1E14E13900006205 /* HorizontolMenuCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6984B5F91E14E13900006205 /* HorizontolMenuCell.xib */; };
 		699942221E1F5A3600B526E7 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 699942211E1F5A3600B526E7 /* MapViewController.swift */; };
 		699942451E1F927D00B526E7 /* Webservice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 699942441E1F927D00B526E7 /* Webservice.swift */; };
-		699942471E1F9A9500B526E7 /* Webservice+APICalls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 699942461E1F9A9500B526E7 /* Webservice+APICalls.swift */; };
 		69A34DF61E1E5570009EE9CA /* IntrectiveNavigationCtroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69A34DF51E1E5570009EE9CA /* IntrectiveNavigationCtroller.swift */; };
+		69D8DD461E235563009D7997 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D8DD451E235563009D7997 /* User.swift */; };
+		69D8DD4E1E235BEE009D7997 /* ValidationToast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D8DD491E235BEE009D7997 /* ValidationToast.swift */; };
+		69D8DD4F1E235BEE009D7997 /* ValidationToast.xib in Resources */ = {isa = PBXBuildFile; fileRef = 69D8DD4A1E235BEE009D7997 /* ValidationToast.xib */; };
+		69D8DD501E235BEE009D7997 /* ValidationToastBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 69D8DD4B1E235BEE009D7997 /* ValidationToastBar.xib */; };
+		69D8DD511E235BEE009D7997 /* VNoDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D8DD4C1E235BEE009D7997 /* VNoDataView.swift */; };
+		69D8DD521E235BEE009D7997 /* VNoDataView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 69D8DD4D1E235BEE009D7997 /* VNoDataView.xib */; };
+		69D8DD541E2367C1009D7997 /* RawdataConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D8DD531E2367C1009D7997 /* RawdataConverter.swift */; };
+		69D8DD581E23BD84009D7997 /* Webservice+APICalls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D8DD571E23BD84009D7997 /* Webservice+APICalls.swift */; };
+		69D8DD5A1E23BD9D009D7997 /* Business.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D8DD591E23BD9D009D7997 /* Business.swift */; };
 		69DD63851E1D0B4200FD0901 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69DD63821E1D0B4200FD0901 /* Bolts.framework */; };
 		69DD63861E1D0B4200FD0901 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69DD63831E1D0B4200FD0901 /* FBSDKCoreKit.framework */; };
 		69DD63871E1D0B4200FD0901 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69DD63841E1D0B4200FD0901 /* FBSDKLoginKit.framework */; };
@@ -71,8 +78,16 @@
 		6984B5F91E14E13900006205 /* HorizontolMenuCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HorizontolMenuCell.xib; sourceTree = "<group>"; };
 		699942211E1F5A3600B526E7 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		699942441E1F927D00B526E7 /* Webservice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Webservice.swift; path = Classess/Webservice.swift; sourceTree = "<group>"; };
-		699942461E1F9A9500B526E7 /* Webservice+APICalls.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Webservice+APICalls.swift"; sourceTree = "<group>"; };
 		69A34DF51E1E5570009EE9CA /* IntrectiveNavigationCtroller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntrectiveNavigationCtroller.swift; sourceTree = "<group>"; };
+		69D8DD451E235563009D7997 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = User.swift; path = Classess/User.swift; sourceTree = "<group>"; };
+		69D8DD491E235BEE009D7997 /* ValidationToast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValidationToast.swift; sourceTree = "<group>"; };
+		69D8DD4A1E235BEE009D7997 /* ValidationToast.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ValidationToast.xib; sourceTree = "<group>"; };
+		69D8DD4B1E235BEE009D7997 /* ValidationToastBar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ValidationToastBar.xib; sourceTree = "<group>"; };
+		69D8DD4C1E235BEE009D7997 /* VNoDataView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VNoDataView.swift; sourceTree = "<group>"; };
+		69D8DD4D1E235BEE009D7997 /* VNoDataView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VNoDataView.xib; sourceTree = "<group>"; };
+		69D8DD531E2367C1009D7997 /* RawdataConverter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RawdataConverter.swift; sourceTree = "<group>"; };
+		69D8DD571E23BD84009D7997 /* Webservice+APICalls.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Webservice+APICalls.swift"; path = "Classess/Webservice+APICalls.swift"; sourceTree = "<group>"; };
+		69D8DD591E23BD9D009D7997 /* Business.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Business.swift; path = Classess/Business.swift; sourceTree = "<group>"; };
 		69DD63821E1D0B4200FD0901 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		69DD63831E1D0B4200FD0901 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		69DD63841E1D0B4200FD0901 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
@@ -85,7 +100,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				69567C6B1E1E311A00556A3F /* MapKit.framework in Frameworks */,
 				69DD63851E1D0B4200FD0901 /* Bolts.framework in Frameworks */,
 				69DD63861E1D0B4200FD0901 /* FBSDKCoreKit.framework in Frameworks */,
 				69DD63871E1D0B4200FD0901 /* FBSDKLoginKit.framework in Frameworks */,
@@ -121,6 +135,7 @@
 				6929DF321E13C3E2002EDCC2 /* Storyboards */,
 				6929DF201E13B5EE002EDCC2 /* ViewControllers */,
 				699942431E1F922F00B526E7 /* Models_WebServices */,
+				69D8DD471E2358FF009D7997 /* CustomViews */,
 				6929DF1F1E13B5E0002EDCC2 /* Other */,
 				6929DF141E13B546002EDCC2 /* Assets.xcassets */,
 				6929DF191E13B546002EDCC2 /* Info.plist */,
@@ -132,9 +147,8 @@
 		6929DF1F1E13B5E0002EDCC2 /* Other */ = {
 			isa = PBXGroup;
 			children = (
-				696421741E162F18003FF813 /* Font-keep_calm */,
-				6984B5F41E14D9F500006205 /* HorizontolMenuView */,
 				6929DF2E1E13BF04002EDCC2 /* Constants.swift */,
+				696421741E162F18003FF813 /* Font-keep_calm */,
 				6929DF2B1E13BDEA002EDCC2 /* Extenstions */,
 			);
 			path = Other;
@@ -179,6 +193,7 @@
 			children = (
 				696421771E163256003FF813 /* BlurViews.swift */,
 				6929DF301E13C0C0002EDCC2 /* ConstrainedSubclasses.swift */,
+				69D8DD531E2367C1009D7997 /* RawdataConverter.swift */,
 				6929DF2C1E13BE00002EDCC2 /* VExtensions.swift */,
 			);
 			path = Extenstions;
@@ -251,6 +266,7 @@
 				6984B5F91E14E13900006205 /* HorizontolMenuCell.xib */,
 			);
 			name = HorizontolMenuView;
+			path = Other;
 			sourceTree = "<group>";
 		};
 		699942201E1F59D900B526E7 /* MapViewController */ = {
@@ -264,6 +280,7 @@
 		699942431E1F922F00B526E7 /* Models_WebServices */ = {
 			isa = PBXGroup;
 			children = (
+				69D8DD441E235524009D7997 /* Models */,
 				699942481E1F9AAB00B526E7 /* Webservice */,
 			);
 			name = Models_WebServices;
@@ -272,10 +289,40 @@
 		699942481E1F9AAB00B526E7 /* Webservice */ = {
 			isa = PBXGroup;
 			children = (
+				69D8DD571E23BD84009D7997 /* Webservice+APICalls.swift */,
 				699942441E1F927D00B526E7 /* Webservice.swift */,
-				699942461E1F9A9500B526E7 /* Webservice+APICalls.swift */,
 			);
 			name = Webservice;
+			sourceTree = "<group>";
+		};
+		69D8DD441E235524009D7997 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				69D8DD451E235563009D7997 /* User.swift */,
+				69D8DD591E23BD9D009D7997 /* Business.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		69D8DD471E2358FF009D7997 /* CustomViews */ = {
+			isa = PBXGroup;
+			children = (
+				69D8DD481E235BEE009D7997 /* ValidationToast */,
+				6984B5F41E14D9F500006205 /* HorizontolMenuView */,
+			);
+			name = CustomViews;
+			sourceTree = "<group>";
+		};
+		69D8DD481E235BEE009D7997 /* ValidationToast */ = {
+			isa = PBXGroup;
+			children = (
+				69D8DD491E235BEE009D7997 /* ValidationToast.swift */,
+				69D8DD4A1E235BEE009D7997 /* ValidationToast.xib */,
+				69D8DD4B1E235BEE009D7997 /* ValidationToastBar.xib */,
+				69D8DD4C1E235BEE009D7997 /* VNoDataView.swift */,
+				69D8DD4D1E235BEE009D7997 /* VNoDataView.xib */,
+			);
+			path = ValidationToast;
 			sourceTree = "<group>";
 		};
 		69DD63811E1D0B4200FD0901 /* Frameworks */ = {
@@ -372,8 +419,11 @@
 			files = (
 				6929DF181E13B546002EDCC2 /* LaunchScreen.storyboard in Resources */,
 				6929DF151E13B546002EDCC2 /* Assets.xcassets in Resources */,
+				69D8DD501E235BEE009D7997 /* ValidationToastBar.xib in Resources */,
 				6984B5FA1E14E13900006205 /* HorizontolMenuCell.xib in Resources */,
+				69D8DD521E235BEE009D7997 /* VNoDataView.xib in Resources */,
 				6929DF101E13B546002EDCC2 /* Main.storyboard in Resources */,
+				69D8DD4F1E235BEE009D7997 /* ValidationToast.xib in Resources */,
 				6984B5F81E14DB2B00006205 /* HorizontolMenuView.xib in Resources */,
 				6969B3201E1CEBAC0093F02C /* KeepCalm-Medium.ttf in Resources */,
 			);
@@ -438,23 +488,28 @@
 				6929DF311E13C0C0002EDCC2 /* ConstrainedSubclasses.swift in Sources */,
 				6984B5F61E14DA3500006205 /* HorizontolMenuView.swift in Sources */,
 				6929DF2D1E13BE00002EDCC2 /* VExtensions.swift in Sources */,
+				69D8DD541E2367C1009D7997 /* RawdataConverter.swift in Sources */,
+				69D8DD511E235BEE009D7997 /* VNoDataView.swift in Sources */,
 				696421781E163256003FF813 /* BlurViews.swift in Sources */,
 				6929DF261E13B8E2002EDCC2 /* ReadMe.text in Sources */,
+				69D8DD581E23BD84009D7997 /* Webservice+APICalls.swift in Sources */,
 				6969B31F1E1CDCD90093F02C /* ProfileViewController.swift in Sources */,
 				699942221E1F5A3600B526E7 /* MapViewController.swift in Sources */,
 				69A34DF61E1E5570009EE9CA /* IntrectiveNavigationCtroller.swift in Sources */,
 				6929DF341E13C9B0002EDCC2 /* ContainerVC.swift in Sources */,
+				69D8DD5A1E23BD9D009D7997 /* Business.swift in Sources */,
+				69D8DD461E235563009D7997 /* User.swift in Sources */,
 				6929DF291E13BBA6002EDCC2 /* ParentViewController.swift in Sources */,
 				69620DB81E1A1A60006D2E2C /* SearchViewController.swift in Sources */,
 				6969B31A1E1CC54D0093F02C /* SettingsViewController.swift in Sources */,
 				69567C691E1E099800556A3F /* StoreDetailVC.swift in Sources */,
 				6969B31C1E1CC8F00093F02C /* CustomTabbarController.swift in Sources */,
 				6984B5F31E14D77200006205 /* HomeViewController.swift in Sources */,
-				699942471E1F9A9500B526E7 /* Webservice+APICalls.swift in Sources */,
 				6929DF241E13B628002EDCC2 /* AppDelegate.swift in Sources */,
 				6929DF2F1E13BF04002EDCC2 /* Constants.swift in Sources */,
 				699942451E1F927D00B526E7 /* Webservice.swift in Sources */,
 				6929DF131E13B546002EDCC2 /* Tilyn.xcdatamodeld in Sources */,
+				69D8DD4E1E235BEE009D7997 /* ValidationToast.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

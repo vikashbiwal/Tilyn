@@ -46,3 +46,8 @@ let serverDateFormator: DateFormatter = {
 //Shutter action block 
 var shutterActionBlock: (Void)-> Void = {_ in}
 
+//Logged In user object
+var me: User! 
+
+//Important Constants
+let kLoggedInUserKey = "kLoggedInUserKey"

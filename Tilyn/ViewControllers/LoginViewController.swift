@@ -20,7 +20,6 @@ class LoginViewController: ParentViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        _application.statusBarStyle = .lightContent
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -30,19 +29,17 @@ class LoginViewController: ParentViewController {
 
     
     @IBAction func facebookLoginBtnTapped(sender: UIButton) {
-        //self.performSegue(withIdentifier: "LoginToHomeSegue", sender: nil)
-        //loginWithFacebook()
-        let params = ["vFacebookId" : "6545456454545",
-                      "vEmail" : "vikash@gmail.com",
-                      "vProfileImage": "https://static.pexels.com/photos/20974/pexels-photo.jpg",
-                      "vFullName" : "Vikash kumar",
-                      "eDeviceType" : "ios"]
-        wsCall.facebookLogin(param: params) {(res, code) in
-         //print(res)
-        }
+//        self.performSegue(withIdentifier: "LoginToHomeSegue", sender: nil)
+        self.loginWithFacebook()
     }
     
     
+}
+
+//MARK: Webservice Calls
+extension LoginViewController {
+    
+    //Take grant from facebook user and get (user informations) parameters from facebook.
     func loginWithFacebook() {
         let fbloginManager  = FBSDKLoginManager()
         fbloginManager.logOut()
@@ -64,23 +61,58 @@ class LoginViewController: ParentViewController {
                     //getProfile image url from fb data
                     if let info = result as? [String : Any] {
                         print("Facebook Info : \(info)")
-                        var imgageUrl = ""
-                        if let picture = info["picture"] as? [String : Any]  {
-                            if let data = picture["data"] as? [String : Any] {
-                                if let url = data["url"] as? String {
-                                    imgageUrl = url
-                                    print(imgageUrl)
-                                }
-                            }
-                        }
-
+                        //Login APICall
+                        self.loginWithFacebookAPICall(fbInfo: info)
+                    } else {
+                        /// data not found
                     }
                     
-                    //Login APICall
                 })
             }
-
+            
             
         })
+    }
+
+    //Send user data on Tyli server
+    func loginWithFacebookAPICall(fbInfo : [String : Any]) {
+       
+        let fbID = fbInfo["id"] as! String
+        let email = (fbInfo["email"] as? String) ?? ""
+        let name = fbInfo["name"] as! String
+        
+        var imgageUrl = ""
+        if let picture = fbInfo["picture"] as? [String : Any]  {
+            if let data = picture["data"] as? [String : Any] {
+                if let url = data["url"] as? String {
+                    imgageUrl = url
+                    print(imgageUrl)
+                }
+            }
+        }
+
+        let params = ["vFacebookId" : fbID,
+                      "vEmail" : email,
+                      "vProfileImage": imgageUrl,
+                      "vFullName" : name,
+                      "eDeviceType" : "ios"]
+        
+        wsCall.facebookLogin(param: params) { response in
+            if response.isSuccess {
+                if let  json = response.json as? [String : Any] {
+                    if let data = json["data"] as? [String : Any] {
+                        me = User(data)
+                        archiveObject(data , key: kLoggedInUserKey)
+                       
+                        let authToken = RConverter.string(data["vAuthToken"])
+                        wsCall.setAccesTokenToHeader(token: authToken)
+                        
+                        self.performSegue(withIdentifier: "LoginToHomeSegue", sender: nil)
+                    }
+                }
+            } else {
+                ShowToastMessage(title: "", message: response.message)
+            }
+        }
     }
 }

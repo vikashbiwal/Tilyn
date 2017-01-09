@@ -25,11 +25,12 @@ class HomeViewController: ParentViewController {
     
     var currentMenuType = MenuType.Rewards
     
+    var nearbyStores = [Business]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadHorizontalMenuView()
-        // Do any additional setup after loading the view.
-        
+        self.loadHorizontalMenuView()
+        self.getNearbyBusinessAPICall()
     }
 
     override func didReceiveMemoryWarning() {
@@ -128,7 +129,7 @@ extension HomeViewController : UICollectionViewDelegateFlowLayout, UICollectionV
 extension HomeViewController : UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return nearbyStores.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {//
@@ -137,7 +138,9 @@ extension HomeViewController : UITableViewDataSource, UITableViewDelegate {
             return cell
 
         } else if currentMenuType == MenuType.NearYou {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "nearbyMenuCell") as! TableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "nearbyMenuCell") as! StoreCell
+            let store = nearbyStores[indexPath.row]
+            cell.setStoreInfo(store)
             return cell
 
         } else {//Offers
@@ -158,6 +161,37 @@ extension HomeViewController : UITableViewDataSource, UITableViewDelegate {
     
 }
 
+//MARK: Webservice Calls 
+extension HomeViewController {
+    
+    func getNearbyBusinessAPICall() {
+        let params = ["vLatitude" : "22.975374",
+                      "vLongitude" : "72.502384",
+                      "radious" : "5"]
+        wsCall.getNearbyBusiness(params: params) { response in
+            if response.isSuccess {
+                if let json = response.json as? [String : Any] {
+                    if let items = json["data"] as? [[String : Any]] {
+                        for item in items {
+                            let business = Business(item)
+                            self.nearbyStores.append(business)
+                        }
+                        self.collView.reloadData()
+                    }
+                }
+                
+            } else {
+                //error
+            }
+        }
+        
+    }
+}
+
+
+//==================================================================================================================
+//====================================================== Cells =====================================================
+//==================================================================================================================
 
 //MARK: ContainerCell
 class ContainerCell: CollectionViewCell {
@@ -170,11 +204,27 @@ class ContainerCell: CollectionViewCell {
     }
     
 }
+
 //MARK: NearYouCell
-class RestaurantCell : TableViewCell {
+class StoreCell : TableViewCell {
    
+    @IBOutlet var lblAddress: UILabel!
+    @IBOutlet var lbldistance: UILabel!
+    @IBOutlet var img_store: UIImageView!
+    @IBOutlet var img_storeCover: UIImageView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
+    }
+    
+    //Set store info
+    func setStoreInfo(_ store: Business) {
+        lblTitle.text = store.title
+        lblAddress.text = store.address
+        lbldistance.text = store.distance.ToString()
+        
+        img_store.kf.setImage(with: URL(string: store.iconUrl))
+        img_storeCover.kf.setImage(with: URL(string: store.imageUrl))
     }
 }
 
