@@ -1,0 +1,6 @@
+framework module Pods_Tilyn {
+  umbrella header "Pods-Tilyn-umbrella.h"
+
+  export *
+  module * { export * }
+}

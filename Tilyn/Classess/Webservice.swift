@@ -85,7 +85,6 @@ class WebService {
                     block(Response(nil, error.code))
                 }
                 
-                
             }
             addInterNetListner()
         }
@@ -323,16 +322,13 @@ struct Response {
                 }
             }
         } else if  code == -1009  {
-            //[_appName: kInternetDown]
             message = kInternetDown
         } else if code == -1003  {
-            //[_appName: kHostDown];
             message = kHostDown
         } else if code == -1001  {
-            //[_appName: kTimeOut]
             message = kTimeOut
         } else {
-            message = "Some thing happen wrong."
+            message = "Something happen wrong."
         }
 
     }

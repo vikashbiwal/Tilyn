@@ -18,6 +18,8 @@
 		6929DF2F1E13BF04002EDCC2 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6929DF2E1E13BF04002EDCC2 /* Constants.swift */; };
 		6929DF311E13C0C0002EDCC2 /* ConstrainedSubclasses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6929DF301E13C0C0002EDCC2 /* ConstrainedSubclasses.swift */; };
 		6929DF341E13C9B0002EDCC2 /* ContainerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6929DF331E13C9B0002EDCC2 /* ContainerVC.swift */; };
+		69302AE01E24A73000734CB9 /* Reward.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69302ADF1E24A73000734CB9 /* Reward.swift */; };
+		69302AE21E24BCCB00734CB9 /* Offer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69302AE11E24BCCB00734CB9 /* Offer.swift */; };
 		69567C691E1E099800556A3F /* StoreDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69567C681E1E099800556A3F /* StoreDetailVC.swift */; };
 		69620DB81E1A1A60006D2E2C /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69620DB71E1A1A60006D2E2C /* SearchViewController.swift */; };
 		696421781E163256003FF813 /* BlurViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 696421771E163256003FF813 /* BlurViews.swift */; };
@@ -63,6 +65,8 @@
 		6929DF2E1E13BF04002EDCC2 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		6929DF301E13C0C0002EDCC2 /* ConstrainedSubclasses.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConstrainedSubclasses.swift; sourceTree = "<group>"; };
 		6929DF331E13C9B0002EDCC2 /* ContainerVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerVC.swift; sourceTree = "<group>"; };
+		69302ADF1E24A73000734CB9 /* Reward.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Reward.swift; path = Classess/Reward.swift; sourceTree = "<group>"; };
+		69302AE11E24BCCB00734CB9 /* Offer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Offer.swift; path = Classess/Offer.swift; sourceTree = "<group>"; };
 		69567C681E1E099800556A3F /* StoreDetailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreDetailVC.swift; sourceTree = "<group>"; };
 		69567C6A1E1E311A00556A3F /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		69620DB71E1A1A60006D2E2C /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
@@ -300,6 +304,8 @@
 			children = (
 				69D8DD451E235563009D7997 /* User.swift */,
 				69D8DD591E23BD9D009D7997 /* Business.swift */,
+				69302ADF1E24A73000734CB9 /* Reward.swift */,
+				69302AE11E24BCCB00734CB9 /* Offer.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -484,6 +490,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				69302AE21E24BCCB00734CB9 /* Offer.swift in Sources */,
 				6964217B1E1635D2003FF813 /* LoginViewController.swift in Sources */,
 				6929DF311E13C0C0002EDCC2 /* ConstrainedSubclasses.swift in Sources */,
 				6984B5F61E14DA3500006205 /* HorizontolMenuView.swift in Sources */,
@@ -503,6 +510,7 @@
 				69620DB81E1A1A60006D2E2C /* SearchViewController.swift in Sources */,
 				6969B31A1E1CC54D0093F02C /* SettingsViewController.swift in Sources */,
 				69567C691E1E099800556A3F /* StoreDetailVC.swift in Sources */,
+				69302AE01E24A73000734CB9 /* Reward.swift in Sources */,
 				6969B31C1E1CC8F00093F02C /* CustomTabbarController.swift in Sources */,
 				6984B5F31E14D77200006205 /* HomeViewController.swift in Sources */,
 				6929DF241E13B628002EDCC2 /* AppDelegate.swift in Sources */,

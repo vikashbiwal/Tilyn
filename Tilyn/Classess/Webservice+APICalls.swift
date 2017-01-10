@@ -15,7 +15,9 @@ let wsCall = WebService()
 struct APIName {
     static var FacebookLogin = "user/fb_login"
     static var DeleteAccount = "user/deleteAccount"
-    static var NearbyBusiness = "business/listNearByBusiness"
+    static var GetNearbyBusiness = "business/listNearByBusiness"
+    static var GetRewards   = "business/listUserRewards"
+    static var GetSpecialOffers = "business/listSpecialOffer"
 }
 
 //MARK: User's APIs
@@ -35,6 +37,15 @@ extension WebService {
 extension WebService {
     
     func getNearbyBusiness(params : [String : Any], block: @escaping ResponseBlock) {
-        _ = POST_REQUEST(relPath: APIName.NearbyBusiness, param: params, block: block)
+        _ = POST_REQUEST(relPath: APIName.GetNearbyBusiness, param: params, block: block)
     }
+    
+    func getRewards(params: [String : Any], block : @escaping ResponseBlock) {
+        _ = POST_REQUEST(relPath: APIName.GetRewards, param: params, block: block)
+    }
+    
+    func getSpecialOffers(params: [String : Any], block : @escaping ResponseBlock) {
+        _ = POST_REQUEST(relPath: APIName.GetSpecialOffers, param: params, block: block)
+    }
+
 }
