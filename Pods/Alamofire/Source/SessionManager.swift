@@ -232,7 +232,7 @@ open class SessionManager {
         -> DataRequest
     {
         var originalRequest: URLRequest?
-
+         print("Request Parameters : \(parameters)")
         do {
             originalRequest = try URLRequest(url: url, method: method, headers: headers)
             let encodedURLRequest = try encoding.encode(originalRequest!, with: parameters)

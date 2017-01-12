@@ -20,7 +20,7 @@ class CustomActivityIndicatorView: BlurView {
     
     // MARK - Init
     init(image : UIImage) {
-        let hieght: CGFloat = 50.0
+        let hieght: CGFloat = 30
         
         let centerX = (hieght/2) - (image.size.width/2)
         let centrerY = (hieght/2) - (image.size.height/2)

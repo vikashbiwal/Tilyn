@@ -41,21 +41,23 @@ extension LoginViewController {
     
     //Take grant from facebook user and get (user informations) parameters from facebook.
     func loginWithFacebook() {
+        self.showCentralGraySpinner()
         let fbloginManager  = FBSDKLoginManager()
         fbloginManager.logOut()
         fbloginManager.logIn(withReadPermissions: _fbLoginReadPermissions, from: self, handler: {(loginResult, error) in
             if let  _ =  error {
                 //login error
-                
+                self.hideCentralGraySpinner()
             } else if loginResult!.isCancelled {
                 //cancel.
-                
+                self.hideCentralGraySpinner()
             } else {
                 //succes
                 let request = FBSDKGraphRequest(graphPath: "me", parameters: ["fields" : _fbUserInfoRequestParam])
                 _ = request?.start(completionHandler: { (con, result, error) in
                     if let _ = error {
                         //error
+                        self.hideCentralGraySpinner()
                     }
                     
                     //getProfile image url from fb data
@@ -65,6 +67,7 @@ extension LoginViewController {
                         self.loginWithFacebookAPICall(fbInfo: info)
                     } else {
                         /// data not found
+                        self.hideCentralGraySpinner()
                     }
                     
                 })
@@ -113,6 +116,7 @@ extension LoginViewController {
             } else {
                 ShowToastMessage(title: "", message: response.message)
             }
+            self.hideCentralGraySpinner()
         }
     }
 }

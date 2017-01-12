@@ -28,6 +28,16 @@ class SearchViewController: ParentViewController {
         self.getCategoriesAPICall()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.addNotificationObservations()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        _defaultCenter.removeObserver(self)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -113,6 +123,30 @@ extension SearchViewController : UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //TODO
+    }
+    
+}
+
+
+//MARK: Notifications
+extension SearchViewController {
+    
+    func addNotificationObservations() {
+        //Add Keybaord observeration
+        _defaultCenter.addObserver(self, selector: #selector(self.keyboardWillShow(_:)), name: Notification.Name.UIKeyboardWillShow, object: nil)
+        _defaultCenter.addObserver(self, selector: #selector(self.keyboardWillHide(_:)), name: Notification.Name.UIKeyboardWillHide, object: nil)
+
+    }
+    //Keyboard Notifications
+    func keyboardWillShow(_ nf: Notification)  {
+        let userinfo = nf.userInfo!
+        if let keyboarFrame = (userinfo[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom:keyboarFrame.size.height , right: 0)
+        }
+    }
+    
+    func keyboardWillHide(_ nf: Notification)  {
+        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom:0 , right: 0)
     }
     
 }
