@@ -37,7 +37,7 @@ class WebService {
     
     //MARK : Initializer
     
-     init() {
+    init() {
             manager = Alamofire.SessionManager.default
             networkManager = NetworkReachabilityManager()!
             //paramEncode = JSONEncoding.default
@@ -89,11 +89,11 @@ class WebService {
             addInterNetListner()
         }
         
-        deinit {
+    deinit {
             networkManager.stopListening()
         }
 
-    }
+}
 
 
 // MARK: - Request, ImageUpload and Dowanload methods
@@ -317,8 +317,14 @@ struct Response {
         if code == 200 {
             isSuccess = true
             if let json = rJson as? [String: Any] {
-                if let msg = json["Message"] as? String {
+                if let msg = json["message"] as? String {
                     message = msg
+                }
+            }
+        } else if  code == 401  {//used for no data available
+            if let json = rJson as? [String: Any] {
+                if let msgInfo = json["message"] as? [String : Any] {
+                    message = msgInfo["error"] as! String
                 }
             }
         } else if  code == -1009  {

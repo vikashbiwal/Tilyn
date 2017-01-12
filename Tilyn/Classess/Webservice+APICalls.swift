@@ -18,6 +18,8 @@ struct APIName {
     static var GetNearbyBusiness = "business/listNearByBusiness"
     static var GetRewards   = "business/listUserRewards"
     static var GetSpecialOffers = "business/listSpecialOffer"
+    static var SearchBusiness = "business/searchCategoryListResult"
+    static var GetCategories = "category/listCategories"
 }
 
 //MARK: User's APIs
@@ -33,7 +35,7 @@ extension WebService {
     
 }
 
-//MARK: Business related APIs
+//MARK: Business and Category related APIs
 extension WebService {
     
     func getNearbyBusiness(params : [String : Any], block: @escaping ResponseBlock) {
@@ -48,4 +50,12 @@ extension WebService {
         _ = POST_REQUEST(relPath: APIName.GetSpecialOffers, param: params, block: block)
     }
 
+    func searchBusinessByCategory(params: [String : Any], block : @escaping ResponseBlock)-> URLSessionTask? {
+        let request =  POST_REQUEST(relPath: APIName.SearchBusiness, param: params, block: block)
+        return request?.task
+    }
+    
+    func getCategories(params: [String : Any]? = nil, block : @escaping ResponseBlock) {
+        _ = GET_REQUEST(relPath: APIName.GetCategories, param: params, block: block)
+    }
 }

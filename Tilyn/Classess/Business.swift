@@ -8,6 +8,7 @@
 
 import Foundation
 
+//MARK: Business
 class Business {
     var id = ""
     var title = ""
@@ -53,3 +54,20 @@ class Business {
         distance = RConverter.double(info["distance"])
     }
 }
+
+
+//MARK: Category
+class Category {
+    var id = ""
+    var name = ""
+    var imgUrl = ""
+    var iconUrl = ""
+    
+    init(_ info: [String : Any]) {
+        id = RConverter.string(info["iCategoryId"])
+        name = RConverter.string(info["vName"])
+        imgUrl = RConverter.string(info["vImage"])
+        iconUrl = RConverter.string(info["vIcon"])
+    }
+}
+

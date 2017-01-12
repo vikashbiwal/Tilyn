@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FBSDKLoginKit
 
 class ContainerVC: ParentViewController {
 
@@ -131,6 +132,11 @@ extension ContainerVC : UITableViewDataSource, UITableViewDelegate {
         let item = menus[indexPath.row]
         cell.lblTitle.text = item.title
         cell.imgView.image = UIImage(named: item.imageName)
+        if #available(iOS 10.0, *) {
+            cell.backgroundColor = item.selected ? UIColor.black.withAlphaComponent(7) : UIColor(displayP3Red: 48.0/255.0, green: 60.0/255.0, blue: 63.0/255.0, alpha: 1)
+        } else {
+            // Fallback on earlier versions
+        }
         return cell
         
     }
@@ -148,6 +154,16 @@ extension ContainerVC : UITableViewDataSource, UITableViewDelegate {
             
         } else if indexPath.row == 2 { //Log Out
             //Logout
+            self.logout_Action()
+        }
+        
+        if indexPath.row != 2 { //not perfom for logout action
+            _ = menus.map {(menu) -> MenuItem in
+                menu.selected = false
+                return menu
+            }
+            menus[indexPath.row].selected = true
+            tableView.reloadData()
         }
         self.openCloseShutter()
     }
@@ -157,4 +173,22 @@ extension ContainerVC : UITableViewDataSource, UITableViewDelegate {
         self.openCloseShutter()
     }
     
+}
+
+extension ContainerVC {
+    func logout_Action() {
+        let alert = UIAlertController(title: _appName, message: "Are you sure you want to logout?", preferredStyle: .alert)
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: {action in })
+        let acceptAction = UIAlertAction(title: "Logout", style: .destructive, handler: {action in
+            FBSDKLoginManager().logOut()
+            _userDefault.removeObject(forKey: kLoggedInUserKey)
+            _ = self.navigationController?.popToRootViewController(animated: true)
+        })
+        
+        alert.addAction(cancelAction)
+        alert.addAction(acceptAction)
+        self.present(alert, animated: true, completion: nil)
+
+    }
 }

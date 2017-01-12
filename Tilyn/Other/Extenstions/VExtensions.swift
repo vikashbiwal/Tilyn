@@ -206,8 +206,8 @@ class VkUISwitch: UISwitch {
     }
 }
 
-// This view is used for Maintain TblHeaderview's height
-class TblWidthHeaderView: UIView {
+// This view is used for Maintain height of the view as per device size
+class HeightView: UIView {
     override func awakeFromNib() {
         super.awakeFromNib()
         var frame = self.frame

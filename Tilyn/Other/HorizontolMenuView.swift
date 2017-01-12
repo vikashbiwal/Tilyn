@@ -55,7 +55,7 @@ class HorizontolMenuView: UIView {
         item.selected = true
         
         if let selectedCell = collView.cellForItem(at: indexPath) as? ItemCell {
-            selectedCell.lblTitle.font = selectedCell.lblTitle.font.withSize(14)
+            selectedCell.lblTitle.font = selectedCell.lblTitle.font.withSize(14 * _widthRatio)
         }
 
     }
@@ -76,7 +76,7 @@ extension HorizontolMenuView :  UICollectionViewDataSource, UICollectionViewDele
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! ItemCell
         let item = items[indexPath.row]
         cell.lblTitle.text = item.title
-        cell.lblTitle.font = cell.lblTitle.font.withSize(item.selected ? 14 : 12)
+        cell.lblTitle.font = cell.lblTitle.font.withSize((item.selected ? 14  : 12) * _widthRatio)
 
         return cell
     }
@@ -94,7 +94,7 @@ extension HorizontolMenuView :  UICollectionViewDataSource, UICollectionViewDele
         item.selected = true
        
         let selectedCell = collectionView.cellForItem(at: indexPath) as! ItemCell
-        selectedCell.lblTitle.font = selectedCell.lblTitle.font.withSize(14)
+        selectedCell.lblTitle.font = selectedCell.lblTitle.font.withSize(14 * _widthRatio)
         actionBlock(indexPath.row - 1)
         collView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
     }
@@ -111,7 +111,7 @@ extension HorizontolMenuView :  UICollectionViewDataSource, UICollectionViewDele
 
         let visibleCells = collView.visibleCells as! [ItemCell]
         visibleCells.forEach { (cell) in
-            cell.lblTitle.font = cell.lblTitle.font.withSize(12)
+            cell.lblTitle.font = cell.lblTitle.font.withSize(12 * _widthRatio)
         }
     }
 }

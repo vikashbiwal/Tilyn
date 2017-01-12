@@ -56,6 +56,18 @@ class ParentViewController: UIViewController {
         }
     }
 
+    //MARK: CentralActivityIndicator, CentralGrayActivityIndicator
+    lazy internal var centralActivityIndicator : CustomActivityIndicatorView = {
+        let image : UIImage = UIImage(named: "spinnerIcon")!
+        return CustomActivityIndicatorView(image: image)
+    }()
+    
+    lazy internal var centralGrayActivityIndicator : CustomActivityIndicatorView = {
+        let image : UIImage = UIImage(named: "spinnerIcon_gray")!
+        return CustomActivityIndicatorView(image: image)
+    }()
+
+
 }
 
 //MARK: Parent IBActions
@@ -72,4 +84,60 @@ extension ParentViewController {
     @IBAction func parentDismissAction(sender: UIButton?) {
         self.dismiss(animated: true, completion: nil)
     }
+}
+
+//MARK: Textfield Delegate
+extension ParentViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        return textField.resignFirstResponder()
+    }
+}
+
+
+extension ParentViewController {
+    
+    func showCentralSpinner() {
+        self.view.addSubview(centralActivityIndicator)
+        let xConstraint = NSLayoutConstraint(item: centralActivityIndicator, attribute: NSLayoutAttribute.centerX, relatedBy: NSLayoutRelation.equal, toItem: self.view, attribute: NSLayoutAttribute.centerX, multiplier: 1, constant: 0)
+        let yConstraint = NSLayoutConstraint(item: centralActivityIndicator, attribute: NSLayoutAttribute.centerY, relatedBy: NSLayoutRelation.equal, toItem: self.view, attribute: NSLayoutAttribute.centerY, multiplier: 1, constant: 0)
+        centralActivityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([xConstraint, yConstraint])
+        centralActivityIndicator.alpha = 0.0
+        view.layoutIfNeeded()
+        self.view.isUserInteractionEnabled = false
+        centralActivityIndicator.startAnimating()
+        UIView.animate(withDuration: 0.2, animations: { () -> Void in
+            self.centralActivityIndicator.alpha = 1.0
+        })
+    }
+    func hideCentralSpinner() {
+        self.view.isUserInteractionEnabled = true
+        centralActivityIndicator.stopAnimating()
+        UIView.animate(withDuration: 0.2, animations: { () -> Void in
+            self.centralActivityIndicator.alpha = 0.0
+        })
+    }
+    
+    
+    func showCentralGraySpinner() {
+        centralGrayActivityIndicator.center = self.view.center
+        self.view.addSubview(centralGrayActivityIndicator)
+        centralGrayActivityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        centralGrayActivityIndicator.alpha = 0.0
+        view.layoutIfNeeded()
+        self.view.isUserInteractionEnabled = false
+        centralGrayActivityIndicator.startAnimating()
+        UIView.animate(withDuration: 0.2, animations: { () -> Void in
+            self.centralGrayActivityIndicator.alpha = 1.0
+        })
+    }
+    
+    func hideCentralGraySpinner() {
+        self.view.isUserInteractionEnabled = true
+        centralGrayActivityIndicator.stopAnimating()
+        UIView.animate(withDuration: 0.2, animations: { () -> Void in
+            self.centralGrayActivityIndicator.alpha = 0.0
+        })
+    }
+
 }
