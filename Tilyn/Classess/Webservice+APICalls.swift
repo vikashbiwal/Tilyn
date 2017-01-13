@@ -16,7 +16,8 @@ struct APIName {
     static var FacebookLogin = "user/fb_login"
     static var DeleteAccount = "user/deleteAccount"
     static var GetNearbyBusiness = "business/listNearByBusiness"
-    static var GetRewards   = "business/listUserRewards"
+    static var GetBusinessDetails = "business/getBusinessDetails"
+    static var GetRewards = "business/listUserRewards"
     static var GetSpecialOffers = "business/listSpecialOffer"
     static var SearchBusiness = "business/searchCategoryListResult"
     static var GetCategories = "category/listCategories"
@@ -42,6 +43,10 @@ extension WebService {
         _ = POST_REQUEST(relPath: APIName.GetNearbyBusiness, param: params, block: block)
     }
     
+    func getBusinessDetails(params : [String : Any], block: @escaping ResponseBlock) {
+        _ = POST_REQUEST(relPath: APIName.GetBusinessDetails, param: params, block: block)
+    }
+
     func getRewards(params: [String : Any], block : @escaping ResponseBlock) {
         _ = POST_REQUEST(relPath: APIName.GetRewards, param: params, block: block)
     }

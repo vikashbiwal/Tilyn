@@ -321,6 +321,14 @@ struct Response {
                     message = msg
                 }
             }
+        } else if code == 400 { //Session Out event
+            if let json = rJson as? [String: Any] {
+                if let msgInfo = json["message"] as? [String : Any] {
+                    message = msgInfo["error"] as! String
+                }
+            }
+            _appDelegator.sessionOut_navigation()
+            
         } else if  code == 401  {//used for no data available
             if let json = rJson as? [String: Any] {
                 if let msgInfo = json["message"] as? [String : Any] {

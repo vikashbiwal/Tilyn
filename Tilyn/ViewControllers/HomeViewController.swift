@@ -35,7 +35,6 @@ class HomeViewController: ParentViewController {
 
     var currentMenuType = MenuType.Rewards
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.loadHorizontalMenuView()
@@ -86,7 +85,14 @@ class HomeViewController: ParentViewController {
                 self.getSpecialOffersAPICall()
             }
         }
-        
+    }
+    
+    //MARK: Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "StoreDetailSegue" {
+            let storeDetailVC = segue.destination as! StoreDetailVC
+            storeDetailVC.store = sender as! Business
+        }
     }
 }
 
@@ -117,7 +123,7 @@ extension HomeViewController : UICollectionViewDelegateFlowLayout, UICollectionV
         if [0, 1].contains(indexPath.row) {//Rewards and Nearby items will showing in tableview inside collectionViewCell.
            
             if indexPath.row == 0 { //Rewards
-                guard !rewards.isEmpty else {
+                guard !rewards.isEmpty else {//rewardsNoDataCell
                     let cell = collView.dequeueReusableCell(withReuseIdentifier: "rewardsNoDataCell", for: indexPath) as! ContainerTableCell
                     cell.viewController = self
                     let selector = indexPath.row == 0 ? #selector(self.getRewardsAPICall) :  #selector(self.getNearbyBusinessAPICall)
@@ -163,7 +169,7 @@ extension HomeViewController : UICollectionViewDelegateFlowLayout, UICollectionV
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 375  * _widthRatio, height: 558 * _widthRatio)
+        return CGSize(width: _screenSize.width, height: 558 * _widthRatio)
     }
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
@@ -242,7 +248,8 @@ extension HomeViewController : UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if currentMenuType == .NearYou {
-            self.performSegue(withIdentifier: "StoreDetailSegue", sender: nil)
+            let store = nearbyStores[indexPath.row]
+            self.performSegue(withIdentifier: "StoreDetailSegue", sender: store)
         }
     }
     

@@ -19,8 +19,8 @@ class MapViewController: ParentViewController {
     var stores = [Business]()
     
     override func viewDidLoad() {
+        mapView.settings.myLocationButton = true
         super.viewDidLoad()
-
     }
 
     override func didReceiveMemoryWarning() {
@@ -31,16 +31,20 @@ class MapViewController: ParentViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setupLocationManager()
+        self.mapView.isMyLocationEnabled = true
+
     }
 
     //MARK: Setup LocationManager
     func setupLocationManager() {
+        self.showCentralGraySpinner()
         UserLocation.sharedInstance.fetchUserLocationForOnce(self) {(loc, error) in
             if let _ =  error {
                 return
             }
             guard let loc = loc else  {return}
             self.location = loc
+            //self.mapView.myLocation = loc
             self.getNearbyBusinessAPICall()
         }
         
@@ -57,8 +61,10 @@ class MapViewController: ParentViewController {
         let cameraPosition = GMSCameraPosition(target: marker.position, zoom: 15, bearing: 0, viewingAngle: 0)
         //let update = GMSCameraUpdate.setTarget(marker.position, zoom: 16)
         //mapView.moveCamera(update)
-        mapView.animate(to: cameraPosition)
+        self.mapView.animate(to: cameraPosition)
+
     }
+    
 }
 
 //MARK: CollectionView DataSource and Delegate
@@ -89,7 +95,7 @@ extension MapViewController : UICollectionViewDelegateFlowLayout, UICollectionVi
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: _screenSize.width, height: 201 * _widthRatio)
+        return CGSize(width: _screenSize.width, height: 151 * _widthRatio)
     }
 }
 

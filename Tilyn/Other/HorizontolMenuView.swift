@@ -39,8 +39,6 @@ class HorizontolMenuView: UIView {
     class func  loadFromNib()-> HorizontolMenuView {
         let views = Bundle.main.loadNibNamed("HorizontolMenuView", owner: nil, options: nil)
         let hmView = views!.first as! HorizontolMenuView
-        //hmView.frame = CGRect(x: 0, y: 0, width: 320, height: 50)
-        //hmView.layoutIfNeeded()
         return hmView
     }
     
@@ -100,7 +98,7 @@ extension HorizontolMenuView :  UICollectionViewDataSource, UICollectionViewDele
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: cellWidth, height: self.frame.height)
+        return CGSize(width: cellWidth, height: 45 * _widthRatio)
     }
     
     //Reset all item

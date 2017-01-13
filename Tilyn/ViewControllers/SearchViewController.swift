@@ -46,6 +46,15 @@ class SearchViewController: ParentViewController {
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .default
     }
+    
+    //MARK: Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "storeDetailSegue" {
+            let storeDetailVC = segue.destination as! StoreDetailVC
+            storeDetailVC.store = sender as! Business
+        }
+    }
+
 
 }
 
@@ -123,6 +132,8 @@ extension SearchViewController : UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //TODO
+        let store = searchResult[indexPath.row]
+        self.performSegue(withIdentifier: "storeDetailSegue", sender: store)
     }
     
 }

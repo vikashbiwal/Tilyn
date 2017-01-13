@@ -31,6 +31,11 @@ class ContainerVC: ParentViewController {
         self.setShutterActionBlock()
         self.setMenuItems()
         self.setProfileInfo()
+        
+        let gesture = UIScreenEdgePanGestureRecognizer(target: self, action: #selector(self.screenEdgeGestureAction))
+        gesture.edges = UIRectEdge.left
+        gesture.delegate = self
+        _appDelegator.window!.addGestureRecognizer(gesture)
     }
 
     //Set user's profile info
@@ -101,7 +106,7 @@ extension ContainerVC : UIGestureRecognizerDelegate {
     
     
     //Handle gesture event
-    func screenEdgeGestureAction(gesture: UIPanGestureRecognizer) {
+    func screenEdgeGestureAction(gesture: UIScreenEdgePanGestureRecognizer) {
         let velocity =  gesture.velocity(in: self.view)
         print("Velocity : \(velocity.x)")
         let translation = gesture.translation(in: self.view)
@@ -110,12 +115,14 @@ extension ContainerVC : UIGestureRecognizerDelegate {
     }
     
     //Gesture Delegate
-    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
-//        print("main \(gestureRecognizer)")
-//        print("Other \(otherGestureRecognizer)")
+//    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+//        return true
+//    }
+
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRequireFailureOf otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         return true
     }
-
+    
 }
 
 
