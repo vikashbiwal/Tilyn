@@ -55,7 +55,6 @@ class SearchViewController: ParentViewController {
         }
     }
 
-
 }
 
 extension SearchViewController {
@@ -64,13 +63,13 @@ extension SearchViewController {
     }
     
     @IBAction func searchFieldTextChange(sender: UITextField) {
+        searchDataTask?.cancel()
         let newValue = sender.text!.trimmedString()
         if !newValue.isEmpty {
             searchStoreAPICall(searchText: newValue)
         } else {
             tableContainerView.isHidden = true
         }
-        
     }
 }
 

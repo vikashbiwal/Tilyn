@@ -18,6 +18,7 @@ class Reward {
     var totalPoints = 0
     var visits = 0
     var imageUrl = ""
+    var imgBusinessUrl = ""
     
     init(_ info : [String : Any]) {
         //id = RConverter.string(info[""])
@@ -27,6 +28,8 @@ class Reward {
         userPoints = RConverter.integer(info["userPoints"])
         totalPoints = RConverter.integer(info["vPoints"])
         visits = RConverter.integer(info["visits"])
-        imageUrl = RConverter.string(info[""])//not found in api reponse
+        imageUrl = RConverter.string(info["vImage"])
+        imgBusinessUrl = RConverter.string(info["vIcon"])
+
     }
 }

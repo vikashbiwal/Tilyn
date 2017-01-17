@@ -14,8 +14,11 @@ class Offer {
     var businessId = ""
     var userId = ""
     var title = ""
-    var imageUrl = ""
+    var offerImgUrl = ""
+    var businessImgUrl = ""
     var businessName  = ""
+    var businessAddress = ""
+    var businessContactNumber = "7819022814"
     
     var startDate = ""
     var endDate = ""
@@ -27,9 +30,12 @@ class Offer {
         id = RConverter.string(info["iOfferId"])
         userId = RConverter.string(info["iUserId"])
         title = RConverter.string(info["vTitle"])
+        offerImgUrl = RConverter.string(info["vOfferImage"])
+        
         businessId = RConverter.string(info["iBusinessId"])
         businessName = RConverter.string(info["businessName"])
-        imageUrl = RConverter.string(info["vImage"])
+        businessAddress = RConverter.string(info["vAddress"])
+        businessImgUrl = RConverter.string(info["vImage"])
         
         latitude = RConverter.double(info["vLatitude"])
         longitude = RConverter.double(info["vLongitude"])

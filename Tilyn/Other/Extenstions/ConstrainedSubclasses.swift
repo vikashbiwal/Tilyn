@@ -157,6 +157,7 @@ class TableViewCell: UITableViewCell {
     @IBOutlet var lblTitle: UILabel!
     @IBOutlet var lblSubTitle: UILabel!
     @IBOutlet var imgView: UIImageView!
+    @IBOutlet var button: UIButton!
     
     @IBOutlet var horizontalConstraints: [NSLayoutConstraint]?
     @IBOutlet var verticalConstraints: [NSLayoutConstraint]?

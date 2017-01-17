@@ -158,6 +158,14 @@ extension UIViewController {
 
 }
 
+extension UIViewController {
+    //Show activity view controller for given items. 
+    func showShareView(for items: [Any]) {
+        let activityController = UIActivityViewController(activityItems: items, applicationActivities: nil)
+        self.present(activityController, animated: true, completion: nil)
+    }
+}
+
 //MARK: UILocalizedIndexedCollaction configuration
 extension UILocalizedIndexedCollation {
     //Add below commented line in your viewController for accesing func partitionObjects(_:)

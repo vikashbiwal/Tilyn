@@ -46,7 +46,7 @@ extension StoreDetailVC {
 //MARK: TableView DataSource and Delegate
 extension StoreDetailVC : UITableViewDataSource, UITableViewDelegate {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 4
+        return 5
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -76,6 +76,7 @@ extension StoreDetailVC : UITableViewDataSource, UITableViewDelegate {
         } else if indexPath.section == kSectionForVisitInfo {//visitCountCell
             let cell = tableView.dequeueReusableCell(withIdentifier: "visitCountCell") as! VisitInfoCell
             cell.rewards = store.rewards
+            cell.pager.numberOfPages = store.rewards.count
             cell.collView.reloadData()
             return cell
             
@@ -188,7 +189,7 @@ class VisitInfoCell: TableViewCell, UICollectionViewDelegateFlowLayout, UICollec
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        pager.numberOfPages = rewards.count
+        
     }
     
     //MARK: CollectionView DataSource and Delegate
@@ -256,10 +257,8 @@ class OffeerCell: TableViewCell, UICollectionViewDataSource, UICollectionViewDel
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         let offer = offers[indexPath.row]
-        let cl = cell as! CollectionViewCell
-        cl.lblTitle.text = offer.title
-        cl.lblSubTitle.text = "Updated 3h ago"
-        cl.imgView.kf.setImage(with: URL(string: offer.imageUrl))
+        let cl = cell as! OfferCollectionViewCell
+        cl.setOfferInfo(offer)
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         //TODO

@@ -11,7 +11,7 @@ import  CoreLocation
 
 
 class HomeViewController: ParentViewController {
-
+    
     @IBOutlet var horizontalMenuContainerView: UIView!
     @IBOutlet var horizontalMenuView: HorizontolMenuView!
     
@@ -23,7 +23,7 @@ class HomeViewController: ParentViewController {
     var nearbyStores = [Business]()
     var rewards = [Reward]()
     var offers = [Offer]()
-
+    
     enum MenuType: Int {
         case Rewards = 0, NearYou = 1, Offers = 2
         
@@ -32,7 +32,7 @@ class HomeViewController: ParentViewController {
             return type
         }
     }
-
+    
     var currentMenuType = MenuType.Rewards
     
     override func viewDidLoad() {
@@ -40,17 +40,17 @@ class HomeViewController: ParentViewController {
         self.loadHorizontalMenuView()
         self.setupLocationManager()
     }
-
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
+        
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-
+    
     //Load Horizontal Menu view
     func loadHorizontalMenuView() {
         let menuItems = [MenuItem("REWARDS", selected: true),
@@ -92,7 +92,18 @@ class HomeViewController: ParentViewController {
         if segue.identifier == "StoreDetailSegue" {
             let storeDetailVC = segue.destination as! StoreDetailVC
             storeDetailVC.store = sender as! Business
+        } else if segue.identifier == "OfferDetailSegue" {
+            let vc = segue.destination as! OfferDetailVC
+            vc.offer = sender as! Offer
+        } else if segue.identifier == "rewardRedeemSegue" {
+            let vc = segue.destination as! RewardDetailVC
+            vc.reward = sender as! Reward
         }
+    }
+    
+    //Navigation for Offer details screen
+    func navigatToOfferDetail(offer: Offer) {
+        self.performSegue(withIdentifier: "OfferDetailSegue", sender: offer)
     }
 }
 
@@ -106,6 +117,11 @@ extension HomeViewController {
     
     @IBAction func mapButtonTapped(sender: UIButton) {
         self.performSegue(withIdentifier: "mapViewSegue", sender: nil)
+    }
+    
+    @IBAction func rewardRedeemBtnClicked(sender: UIButton) {
+        let reward = rewards[sender.tag]
+        self.performSegue(withIdentifier: "rewardRedeemSegue", sender: reward)
     }
 }
 
@@ -121,46 +137,75 @@ extension HomeViewController : UICollectionViewDelegateFlowLayout, UICollectionV
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if [0, 1].contains(indexPath.row) {//Rewards and Nearby items will showing in tableview inside collectionViewCell.
-           
+            
             if indexPath.row == 0 { //Rewards
                 guard !rewards.isEmpty else {//rewardsNoDataCell
                     let cell = collView.dequeueReusableCell(withReuseIdentifier: "rewardsNoDataCell", for: indexPath) as! ContainerTableCell
-                    cell.viewController = self
-                    let selector = indexPath.row == 0 ? #selector(self.getRewardsAPICall) :  #selector(self.getNearbyBusinessAPICall)
-                    cell.setRefreshControl(selector: selector)
                     return cell
                 }
             } else if indexPath.row == 1 { //NearYou
                 guard !nearbyStores.isEmpty else {
                     let cell = collView.dequeueReusableCell(withReuseIdentifier: "storeNoDataCell", for: indexPath) as! ContainerTableCell
-                    cell.viewController = self
-                    cell.lblTitle.text = "There are no any store available near by you."
-                    let selector = indexPath.row == 0 ? #selector(self.getRewardsAPICall) :  #selector(self.getNearbyBusinessAPICall)
-                    cell.setRefreshControl(selector: selector)
                     return cell
                 }
             }
             
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "containerTableCell", for: indexPath) as! ContainerTableCell
-            cell.viewController = self
-            currentMenuType = MenuType.type(with: indexPath.row)
-            let selector = indexPath.row == 0 ? #selector(self.getRewardsAPICall) :  #selector(self.getNearbyBusinessAPICall)
-            cell.setRefreshControl(selector: selector)
-            cell.tableview.reloadData()
             return cell
             
         } else { //Special Offer items will showing in collectionView in side collectionViewCell
             
             guard !offers.isEmpty else {
                 let cell = collView.dequeueReusableCell(withReuseIdentifier: "storeNoDataCell", for: indexPath) as! CollectionViewCell
-                cell.lblTitle.text = "There are no any offers available."
                 return cell
             }
-
+            
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "containerCollViewCell", for: indexPath) as! ContainerCollViewCell
-            cell.offers  = offers
-            cell.collView.reloadData()
             return cell
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        if [0, 1].contains(indexPath.row) {//Rewards and Nearby items will showing in tableview inside collectionViewCell.
+            
+            if indexPath.row == 0 { //Rewards
+                guard !rewards.isEmpty else {//rewardsNoDataCell
+                    let cl = cell as! ContainerTableCell
+                    cl.viewController = self
+                    let selector =  #selector(self.getRewardsAPICall)
+                    cl.setRefreshControl(selector: selector)
+                    return
+                }
+            } else if indexPath.row == 1 { //NearYou
+                guard !nearbyStores.isEmpty else {
+                    let cl = cell as! ContainerTableCell
+                    cl.viewController = self
+                    cl.lblTitle.text = "There are no any store available near by you."
+                    let selector =   #selector(self.getNearbyBusinessAPICall)
+                    cl.setRefreshControl(selector: selector)
+                    return
+                }
+            }
+            
+            let cl = cell as! ContainerTableCell
+            cl.viewController = self
+            currentMenuType = MenuType.type(with: indexPath.row)
+            let selector = indexPath.row == 0 ? #selector(self.getRewardsAPICall) :  #selector(self.getNearbyBusinessAPICall)
+            cl.setRefreshControl(selector: selector)
+            cl.tableview.reloadData()
+            
+        } else { //Special Offer items will showing in collectionView in side collectionViewCell
+            
+            guard !offers.isEmpty else {
+                let cl = cell as! CollectionViewCell
+                cl.lblTitle.text = "There are no any offers available."
+                return
+            }
+            
+            let cl = cell as! ContainerCollViewCell
+            cl.homeVC = self
+            cl.offers  = offers
+            cl.collView.reloadData()
         }
     }
     
@@ -206,7 +251,7 @@ extension HomeViewController : UICollectionViewDelegateFlowLayout, UICollectionV
         
         let indexPath = IndexPath(item: index, section: 0)
         collView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
-
+        
     }
     
 }
@@ -227,17 +272,18 @@ extension HomeViewController : UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {//
         if currentMenuType  == MenuType.Rewards {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "rewardMenuCell") as! RewardCell
             let reward = rewards[indexPath.row]
+            let cellIdentifier = reward.totalPoints == reward.userPoints ? "rewardRedeemeCell" : "rewardMenuCell"
+            let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier) as! RewardCell
             cell.setRewardInfo(reward)
+            cell.button?.tag = indexPath.row
             return cell
-
+            
         } else  { //if currentMenuType == MenuType.NearYou
             let cell = tableView.dequeueReusableCell(withIdentifier: "nearbyMenuCell") as! StoreCell
             let store = nearbyStores[indexPath.row]
             cell.setStoreInfo(store)
             return cell
-
         }
         
     }
@@ -256,18 +302,18 @@ extension HomeViewController : UITableViewDataSource, UITableViewDelegate {
 }
 
 
-//MARK: Webservice Calls 
+//MARK: Webservice Calls
 extension HomeViewController {
     
     //Get Rewards ApI Call
     func getRewardsAPICall() {
         self.showCentralGraySpinner()
-        let params = ["iUserId" : me.id]
+        let params = ["iUserId" : "68"]
         wsCall.getRewards(params: params) { response in
             if response.isSuccess {
                 if let json = response.json as? [String : Any] {
                     if let items = json["data"] as? [[String : Any]] {
-                       self.rewards.removeAll()
+                        self.rewards.removeAll()
                         for item in items {
                             let reward = Reward(item)
                             self.rewards.append(reward)
@@ -287,7 +333,7 @@ extension HomeViewController {
             self.hideCentralGraySpinner()
         }
     }
-
+    
     //Get Nearby Business API Call
     func getNearbyBusinessAPICall() {
         self.showCentralGraySpinner()
@@ -298,7 +344,7 @@ extension HomeViewController {
             if response.isSuccess {
                 if let json = response.json as? [String : Any] {
                     if let items = json["data"] as? [[String : Any]] {
-                       self.nearbyStores.removeAll()
+                        self.nearbyStores.removeAll()
                         for item in items {
                             let business = Business(item)
                             self.nearbyStores.append(business)
@@ -316,7 +362,7 @@ extension HomeViewController {
             if let cell = self.collView.cellForItem(at: IndexPath(item: 1, section: 0)) as? ContainerTableCell {
                 cell.refreshControl?.endRefreshing()
             }
-
+            
             self.hideCentralGraySpinner()
         }
     }
@@ -367,7 +413,13 @@ class ContainerTableCell: CollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         //tableview.tableFooterView = nil
+        refreshControl?.endRefreshing()
     }
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        refreshControl?.endRefreshing()
+    }
+    
     
     //Set tableview Refresh Controller with given selector action
     func setRefreshControl(selector:Selector) {
@@ -378,7 +430,7 @@ class ContainerTableCell: CollectionViewCell {
         }
         refreshControl!.addTarget(viewController!, action: selector, for: .valueChanged)
         tableview.addSubview(refreshControl!)
-
+        
     }
     
 }
@@ -386,12 +438,10 @@ class ContainerTableCell: CollectionViewCell {
 class  ContainerCollViewCell: CollectionViewCell, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     @IBOutlet var collView: UICollectionView!
     var offers = [Offer] ()
+    weak var homeVC: HomeViewController?
     
     override func awakeFromNib() {
         super.awakeFromNib()
-//        let refreshControll = UIRefreshControl()
-//        collView.addSubview(refreshControll)
-        
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -406,31 +456,34 @@ class  ContainerCollViewCell: CollectionViewCell, UICollectionViewDataSource, UI
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! OfferCollectionViewCell
         let offer = offers[indexPath.row]
         cell.setOfferInfo(offer)
-         cell.backgroundColor   = UIColor.black
+        
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         //TODO
+        let offer = offers[indexPath.row]
+        homeVC?.navigatToOfferDetail(offer: offer)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let cellWidth = ((_screenSize.width - 45) / 2) * _widthRatio
-        let cellHeigh = ((collectionView.frame.size.height - 45) / 2) * _widthRatio
+        let cellWidth = ((_screenSize.width - 45 ) / 2)
+        let cellHeigh = ((collectionView.frame.size.height - 45) / 2)
         return CGSize(width: cellWidth, height: cellHeigh)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 15, left: 15, bottom: 15, right: 15)
+        let insetValue: CGFloat  = 15
+        return UIEdgeInsets(top: insetValue , left: insetValue, bottom: insetValue, right: insetValue)
     }
-
-
+    
+    
 }
 
 
 //MARK: NearYouCell
 class StoreCell : TableViewCell {
-   
+    
     @IBOutlet var lblAddress: UILabel!
     @IBOutlet var lbldistance: UILabel!
     @IBOutlet var img_store: UIImageView!
@@ -471,7 +524,7 @@ class RewardCell: TableViewCell, UICollectionViewDataSource, UICollectionViewDel
         self.lblSubTitle.text = reward.address
         self.lblMessage.text = reward.description
         self.imgView.kf.setImage(with: URL(string: reward.imageUrl), placeholder: UIImage(named: "img_storeBack"))
-        self.collView.reloadData()
+        self.collView?.reloadData()
     }
     
     //CollectionView DataSource and Delegate
@@ -485,17 +538,17 @@ class RewardCell: TableViewCell, UICollectionViewDataSource, UICollectionViewDel
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CollectionViewCell
-       
+        
         let imageName = indexPath.row < rewardPoint.userPoints ? "ic_reward_Active" : "ic_reward_Inactive"
         cell.imgView.image = UIImage(named: imageName)
-
+        
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         //TODO
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let side = 30 * _widthRatio
         return CGSize(width: side, height: side)
@@ -515,24 +568,27 @@ class RewardCell: TableViewCell, UICollectionViewDataSource, UICollectionViewDel
         
         return UIEdgeInsets(top: 0, left: paddingValue, bottom: 0, right: paddingValue)
     }
-
+    
 }
 
 //MARK: Offer - Collection view cell
 class OfferCollectionViewCell: CollectionViewCell {
     @IBOutlet var lblTimeUpdated: UILabel!
+    @IBOutlet var imgOffer: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
+        self.layer.cornerRadius = 8 * _widthRatio
+        self.clipsToBounds = true
     }
     
     //Set offer info
     func setOfferInfo(_ offer: Offer) {
         lblTitle.text = offer.title
-        lblSubTitle.text = offer.businessName
+        lblSubTitle?.text = offer.businessName
         lblTimeUpdated.text = "Updated 5h ago"
-        imgView.kf.setImage(with: URL(string: offer.imageUrl))
+        imgView?.kf.setImage(with: URL(string: offer.businessImgUrl))
+        imgOffer?.kf.setImage(with: URL(string: offer.offerImgUrl))
     }
 }
 

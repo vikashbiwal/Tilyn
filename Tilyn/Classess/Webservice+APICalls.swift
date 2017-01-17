@@ -8,7 +8,7 @@
 
 import Foundation
 
-let _baseUrl = "http://192.168.10.116:8888/tilyn/ws/v1/"
+let _baseUrl = "http://webproject.live/php/codeigniter/tilyn/ws/v1/"//"http://192.168.10.116:8888/tilyn/ws/v1/"
 
 let wsCall = WebService()
 
