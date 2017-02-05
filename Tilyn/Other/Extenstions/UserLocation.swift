@@ -48,8 +48,8 @@ class UserLocation: NSObject  {
         let status = CLLocationManager.authorizationStatus()
         // If status is denied or only granted for when in use
         if status == CLAuthorizationStatus.denied || status == CLAuthorizationStatus.restricted {
-            let title = "Location services are off"
-            let msg = "To use location you must turn on 'WhenInUse' in the location services settings"
+            _ = "Location services are off"
+            _ = "To use location you must turn on 'WhenInUse' in the location services settings"
 //            UIAlertController.actionWithMessage(msg, title: title, type: .alert, buttons: ["Settings"], controller: controller, block: { (tapped) -> () in
 //                if tapped == "Settings" {
 //                    UIApplication.shared.openURL(URL(string: UIApplicationOpenSettingsURLString)!)

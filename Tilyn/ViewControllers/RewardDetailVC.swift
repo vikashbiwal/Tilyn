@@ -36,4 +36,30 @@ class RewardDetailVC: ParentViewController {
         imgvStore.kf.setImage(with: URL(string : reward.imgBusinessUrl))
     }
 
+    //MARK: IBActions
+    @IBAction func redeemBtnTapped(sender: UIButton) {
+        self.redeemRewardAPICall()
+    }
+    
+}
+
+extension RewardDetailVC {
+    func redeemRewardAPICall() {
+        self.showCentralGraySpinner()
+        let param = ["iRewardId" : reward.id,
+                     "iUserId" : me.id,
+                     "iRedeemFlag" : "1"]
+        wsCall.redeemReward(params: param) { response in
+            if response.isSuccess {
+//                if let json = response.json as? [String : Any] {
+//                    
+//                
+//                }
+                
+            } else {
+                ShowToastErrorMessage("", message: response.message)
+            }
+            self.hideCentralGraySpinner()
+        }
+    }
 }

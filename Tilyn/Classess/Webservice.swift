@@ -148,7 +148,7 @@ extension WebService {
                     break
                 }
             }
-        }catch let error{
+        } catch let error {
             jprint(error)
             errorBlock(relPath, nil, error as NSError, block)
             return nil
@@ -205,7 +205,7 @@ extension WebService {
     func DOWNLOAD_FILE(relPath : String, progress: WSProgress?, block: @escaping WSFileBlock){
         let destination: DownloadRequest.DownloadFileDestination = { _, _ in
             let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-            let fileURL = documentsURL.appendingPathComponent("pig.png")
+            let fileURL = documentsURL.appendingPathComponent("image.png")
             return (fileURL, [.removePreviousFile, .createIntermediateDirectories])
         }
         
@@ -321,7 +321,7 @@ struct Response {
                     message = msg
                 }
             }
-        } else if code == 400 { //Session Out event
+        } else if code == 400 { //Session Out event in Tilyn app
             if let json = rJson as? [String: Any] {
                 if let msgInfo = json["message"] as? [String : Any] {
                     message = msgInfo["error"] as! String

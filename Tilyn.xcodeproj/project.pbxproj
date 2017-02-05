@@ -39,6 +39,8 @@
 		69A25DEC1E264AFC009A14AD /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69A25DEB1E264AFC009A14AD /* StringExtension.swift */; };
 		69A25DEE1E265C38009A14AD /* CustomActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69A25DED1E265C38009A14AD /* CustomActivityIndicatorView.swift */; };
 		69A34DF61E1E5570009EE9CA /* IntrectiveNavigationCtroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69A34DF51E1E5570009EE9CA /* IntrectiveNavigationCtroller.swift */; };
+		69D3382F1E2E0E5C005EDC70 /* BeaconManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D3382E1E2E0E5C005EDC70 /* BeaconManager.swift */; };
+		69D338311E2E0EE6005EDC70 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69D338301E2E0EE6005EDC70 /* CoreLocation.framework */; };
 		69D8DD461E235563009D7997 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D8DD451E235563009D7997 /* User.swift */; };
 		69D8DD4E1E235BEE009D7997 /* ValidationToast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D8DD491E235BEE009D7997 /* ValidationToast.swift */; };
 		69D8DD4F1E235BEE009D7997 /* ValidationToast.xib in Resources */ = {isa = PBXBuildFile; fileRef = 69D8DD4A1E235BEE009D7997 /* ValidationToast.xib */; };
@@ -92,6 +94,8 @@
 		69A25DEB1E264AFC009A14AD /* StringExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		69A25DED1E265C38009A14AD /* CustomActivityIndicatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomActivityIndicatorView.swift; sourceTree = "<group>"; };
 		69A34DF51E1E5570009EE9CA /* IntrectiveNavigationCtroller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntrectiveNavigationCtroller.swift; sourceTree = "<group>"; };
+		69D3382E1E2E0E5C005EDC70 /* BeaconManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeaconManager.swift; sourceTree = "<group>"; };
+		69D338301E2E0EE6005EDC70 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		69D8DD451E235563009D7997 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = User.swift; path = Classess/User.swift; sourceTree = "<group>"; };
 		69D8DD491E235BEE009D7997 /* ValidationToast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValidationToast.swift; sourceTree = "<group>"; };
 		69D8DD4A1E235BEE009D7997 /* ValidationToast.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ValidationToast.xib; sourceTree = "<group>"; };
@@ -114,6 +118,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				69D338311E2E0EE6005EDC70 /* CoreLocation.framework in Frameworks */,
 				69DD63851E1D0B4200FD0901 /* Bolts.framework in Frameworks */,
 				69DD63861E1D0B4200FD0901 /* FBSDKCoreKit.framework in Frameworks */,
 				69DD63871E1D0B4200FD0901 /* FBSDKLoginKit.framework in Frameworks */,
@@ -161,6 +166,7 @@
 		6929DF1F1E13B5E0002EDCC2 /* Other */ = {
 			isa = PBXGroup;
 			children = (
+				69D3382D1E2E0E40005EDC70 /* BeaconManager */,
 				6929DF2E1E13BF04002EDCC2 /* Constants.swift */,
 				696421741E162F18003FF813 /* Font-keep_calm */,
 				6929DF2B1E13BDEA002EDCC2 /* Extenstions */,
@@ -314,6 +320,14 @@
 			name = Webservice;
 			sourceTree = "<group>";
 		};
+		69D3382D1E2E0E40005EDC70 /* BeaconManager */ = {
+			isa = PBXGroup;
+			children = (
+				69D3382E1E2E0E5C005EDC70 /* BeaconManager.swift */,
+			);
+			name = BeaconManager;
+			sourceTree = "<group>";
+		};
 		69D8DD441E235524009D7997 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -349,6 +363,7 @@
 		69DD63811E1D0B4200FD0901 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				69D338301E2E0EE6005EDC70 /* CoreLocation.framework */,
 				69567C6A1E1E311A00556A3F /* MapKit.framework */,
 				69DD63821E1D0B4200FD0901 /* Bolts.framework */,
 				69DD63831E1D0B4200FD0901 /* FBSDKCoreKit.framework */,
@@ -528,6 +543,7 @@
 				6969B31A1E1CC54D0093F02C /* SettingsViewController.swift in Sources */,
 				69567C691E1E099800556A3F /* StoreDetailVC.swift in Sources */,
 				69302AE01E24A73000734CB9 /* Reward.swift in Sources */,
+				69D3382F1E2E0E5C005EDC70 /* BeaconManager.swift in Sources */,
 				69E491E71E2CEB89007D612F /* RewardDetailVC.swift in Sources */,
 				6969B31C1E1CC8F00093F02C /* CustomTabbarController.swift in Sources */,
 				69A25DEE1E265C38009A14AD /* CustomActivityIndicatorView.swift in Sources */,

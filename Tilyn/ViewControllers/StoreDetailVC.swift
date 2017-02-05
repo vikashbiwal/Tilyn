@@ -32,6 +32,17 @@ class StoreDetailVC: ParentViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    //MARK: Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "OfferDetailSegue" {
+            let offerDetailVC = segue.destination as! OfferDetailVC
+            offerDetailVC.offer = sender as! Offer
+        }
+    }
+    
+    func navigatToOfferDetailScreen(for offer: Offer) {
+        self.performSegue(withIdentifier: "OfferDetailSegue", sender: offer)
+    }
 
 }
 
@@ -75,16 +86,13 @@ extension StoreDetailVC : UITableViewDataSource, UITableViewDelegate {
             
         } else if indexPath.section == kSectionForVisitInfo {//visitCountCell
             let cell = tableView.dequeueReusableCell(withIdentifier: "visitCountCell") as! VisitInfoCell
-            cell.rewards = store.rewards
-            cell.pager.numberOfPages = store.rewards.count
-            cell.collView.reloadData()
+            cell.setRewardsInfo(store.rewards)
             return cell
             
         } else if indexPath.section == kSectionForOfferInfo {
             let cell = tableView.dequeueReusableCell(withIdentifier: "specialOfferCell") as! OffeerCell
-            cell.lblTitle.text = "Today's Special Offers"
-            cell.offers = store.offers
-            cell.collView.reloadData()
+            cell.storeDetailVC = self
+            cell.setOffers(store.offers)
             return cell
             
         } else if indexPath.section == kSectionForMapInfo { //mapCell
@@ -140,13 +148,17 @@ extension StoreDetailVC {
     func getStoreDetails() {
         self.showCentralGraySpinner()
         let params = ["iUserId" : me.id,
-                      "iBusinessId" : store.id]
+                      "iBusinessId" : store.id,
+                      "vLongitude" : "72.5061359257181",
+                      "vLatitude" : "23.0100119859194"]
         wsCall.getBusinessDetails(params: params) { response in
             if response.isSuccess {
                 if let json = response.json as? [String : Any] {
                     if let obj = json["data"] as? [String : Any] {
                       self.store.setInfo(obj)
-                        self.tableView.reloadData()
+                        
+                        let indexs: IndexSet = [self.kSectionForStoreInfo, self.kSectionForVisitInfo, self.kSectionForOfferInfo]
+                        self.tableView.reloadSections(indexs, with: .automatic)
                     }
                 }
             } else {
@@ -190,6 +202,12 @@ class VisitInfoCell: TableViewCell, UICollectionViewDelegateFlowLayout, UICollec
     override func awakeFromNib() {
         super.awakeFromNib()
         
+    }
+    
+    func setRewardsInfo(_ rewards: [Reward]) {
+        self.rewards = rewards
+        self.pager.numberOfPages = rewards.count
+        self.collView.reloadData()
     }
     
     //MARK: CollectionView DataSource and Delegate
@@ -236,12 +254,21 @@ class OffeerCell: TableViewCell, UICollectionViewDataSource, UICollectionViewDel
     @IBOutlet var pager: UIPageControl!
 
     var offers = [Offer]()
+    weak var storeDetailVC: StoreDetailVC?
     
     override func awakeFromNib() {
         super.awakeFromNib()
         pager.numberOfPages = offers.count
     }
     
+    func setOffers(_ offers: [Offer]) {
+        self.lblTitle.text = "Today's Special Offers"
+        self.offers = offers
+        self.pager.numberOfPages = offers.count
+        self.collView.reloadData()
+    }
+    
+    //CollectionView DataSource and Delegate
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
@@ -261,7 +288,8 @@ class OffeerCell: TableViewCell, UICollectionViewDataSource, UICollectionViewDel
         cl.setOfferInfo(offer)
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        //TODO
+        let offer = offers[indexPath.row]
+        self.storeDetailVC?.navigatToOfferDetailScreen(for: offer)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -303,8 +331,6 @@ class MapInfoCell : TableViewCell {
         lblTitle.text = "Location"
         lblAddress.text = store.address
         lblSubTitle.text = "3.8 KM AWAY"
-        
-        //self.mapView.animate(to: cameraPosition)
     }
     
     func updateCameraPostion() {

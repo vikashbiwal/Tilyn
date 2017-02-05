@@ -10,7 +10,7 @@ import Foundation
 
 
 class Reward {
-    //var id = ""
+    var id = ""
     var title = ""
     var address = ""
     var description = ""
@@ -21,7 +21,7 @@ class Reward {
     var imgBusinessUrl = ""
     
     init(_ info : [String : Any]) {
-        //id = RConverter.string(info[""])
+        id = RConverter.string(info["iRawardId"])
         title = RConverter.string(info["vTitle"])
         address = RConverter.string(info["vAddress"])
         description = RConverter.string(info["rewardName"])

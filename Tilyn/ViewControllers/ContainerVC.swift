@@ -111,14 +111,12 @@ extension ContainerVC : UIGestureRecognizerDelegate {
         print("Velocity : \(velocity.x)")
         let translation = gesture.translation(in: self.view)
        print("Translation in x : \(translation.x)")
+        
+        
        
     }
     
     //Gesture Delegate
-//    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
-//        return true
-//    }
-
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRequireFailureOf otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         return true
     }

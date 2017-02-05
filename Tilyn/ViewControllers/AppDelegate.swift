@@ -16,7 +16,7 @@ import GooglePlaces
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    let beaconManager =  BeaconManager.shared
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         self.window?.backgroundColor = UIColor.white
@@ -25,8 +25,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         GMSPlacesClient.provideAPIKey(_googleMapAPIKey)
         
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
-        
+        self.setNotificationSettings()
         self.directLogin()
+        setupBeaconMonitoring()
         return true
     }
 
@@ -54,6 +55,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     }
     
+    func setNotificationSettings() {
+        let type: UIUserNotificationType = [UIUserNotificationType.sound, UIUserNotificationType.alert]
+        let settings = UIUserNotificationSettings(types: type, categories: nil)
+        UIApplication.shared.registerUserNotificationSettings(settings)
+    }
+
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
@@ -135,5 +142,36 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
 
+}
+
+//MARK: Beacon setup and APIs
+extension AppDelegate {
+    
+    func setupBeaconMonitoring() {
+        //BeaconManager.shared.addBeaconForMonitoring(uuid: "B9407F30-F5F8-466E-AFF9-25556B57FE6D", identifier: "regionId")
+        
+//        BeaconManager.shared.rangingBlock = { beacon in
+//            print(beacon.minor)
+//            print(beacon.major)
+//        }
+    }
+    
+    func connectBeaconAPICall(beacon: CLBeacon) {
+        let param = ["vMajor": beacon.major.stringValue,
+                     "vMinor" : beacon.minor.stringValue,
+                     "iUserId" : me.id]
+        
+        wsCall.connectBeacon(params: param) { response in
+            if response.isSuccess {
+                let notification = UILocalNotification()
+                notification.alertBody = "API response has got."
+                notification.soundName = "Default"
+                UIApplication.shared.presentLocalNotificationNow(notification)
+
+            } else {
+            
+            }
+        }
+    }
 }
 

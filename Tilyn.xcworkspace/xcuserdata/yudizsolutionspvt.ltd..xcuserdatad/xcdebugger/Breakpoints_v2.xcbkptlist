@@ -9,13 +9,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Tilyn/ViewControllers/HomeViewController.swift"
-            timestampString = "506262817.728073"
+            filePath = "Tilyn/ViewControllers/OfferDetailVC.swift"
+            timestampString = "506329250.427095"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "470"
-            endingLineNumber = "470"
-            landmarkName = "collectionView(_:layout:sizeForItemAt:)"
+            startingLineNumber = "33"
+            endingLineNumber = "33"
+            landmarkName = "prepareUIWithValues()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
